@@ -308,12 +308,269 @@ const DB0=[
  {s:"Okula başlayalı iki ay oldu.",hl:"başlayalı",kok:"başla-",ek:"-yalı",tur:"Zaman",soru:"Ne zamandan beri iki ay oldu?",not:"Kaynaştırma harfi y: başla+y+alı."},
  {s:"Zil çalar çalmaz sınıftan fırladılar.",hl:"çalar çalmaz",kok:"çal-",ek:"-ar … -maz",tur:"Zaman",soru:"Sınıftan ne zaman fırladılar?",not:"-ar -maz: eylemin hemen ardından olanı bildirir."},
  {s:"Eve girer girmez ödevine oturdu.",hl:"girer girmez",kok:"gir-",ek:"-er … -mez",tur:"Zaman",soru:"Ödevine ne zaman oturdu?",not:"-er -mez: eylemin hemen ardından olanı bildirir."},
- {s:"Sınavdan çıkınca derin bir nefes aldı.",hl:"çıkınca",kok:"çık-",ek:"-ınca",tur:"Zaman",soru:"Ne zaman nefes aldı?",not:"-ınca: eylemin ne zaman olduğunu bildirir."}
+ {s:"Sınavdan çıkınca derin bir nefes aldı.",hl:"çıkınca",kok:"çık-",ek:"-ınca",tur:"Zaman",soru:"Ne zaman nefes aldı?",not:"-ınca: eylemin ne zaman olduğunu bildirir."},
+ // ---- GENİŞLETİLMİŞ HAVUZ ----
+ {s:"Misafirler çay içerek sohbet etti.",hl:"içerek",kok:"iç-",ek:"-erek",tur:"Durum",soru:"Misafirler nasıl sohbet etti?",not:"-erek: işin nasıl yapıldığını bildirir."},
+ {s:"Kuşlar kanat çırparak havalandı.",hl:"çırparak",kok:"çırp-",ek:"-arak",tur:"Durum",soru:"Kuşlar nasıl havalandı?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Küçük çocuk annesine sarılarak uyudu.",hl:"sarılarak",kok:"sarıl-",ek:"-arak",tur:"Durum",soru:"Çocuk nasıl uyudu?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Takım son dakikada gol atarak kazandı.",hl:"atarak",kok:"at-",ek:"-arak",tur:"Durum",soru:"Takım nasıl kazandı?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Yolcular sıraya dizilerek bilet aldı.",hl:"dizilerek",kok:"dizil-",ek:"-erek",tur:"Durum",soru:"Yolcular nasıl bilet aldı?",not:"-erek: işin nasıl yapıldığını bildirir."},
+ {s:"Çocuklar kardan adam yaparak eğlendi.",hl:"yaparak",kok:"yap-",ek:"-arak",tur:"Durum",soru:"Çocuklar nasıl eğlendi?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Hasta doktora danışarak ilaç kullandı.",hl:"danışarak",kok:"danış-",ek:"-arak",tur:"Durum",soru:"Hasta nasıl ilaç kullandı?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Bilal resim çizerek vakit geçirdi.",hl:"çizerek",kok:"çiz-",ek:"-erek",tur:"Durum",soru:"Bilal nasıl vakit geçirdi?",not:"-erek: işin nasıl yapıldığını bildirir."},
+ {s:"Turistler şehri gezerek tarihi öğrendi.",hl:"gezerek",kok:"gez-",ek:"-erek",tur:"Durum",soru:"Turistler tarihi nasıl öğrendi?",not:"-erek: işin nasıl yapıldığını bildirir."},
+ {s:"Sporcu hızla koşarak çizgiyi geçti.",hl:"koşarak",kok:"koş-",ek:"-arak",tur:"Durum",soru:"Sporcu çizgiyi nasıl geçti?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Müdür öğrencilere seslenerek konuştu.",hl:"seslenerek",kok:"seslen-",ek:"-erek",tur:"Durum",soru:"Müdür nasıl konuştu?",not:"-erek: işin nasıl yapıldığını bildirir."},
+ {s:"Dede masal anlatarak torununu uyuttu.",hl:"anlatarak",kok:"anlat-",ek:"-arak",tur:"Durum",soru:"Dede torununu nasıl uyuttu?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Sınıf başkanı parmak kaldırarak söz aldı.",hl:"kaldırarak",kok:"kaldır-",ek:"-arak",tur:"Durum",soru:"Sınıf başkanı nasıl söz aldı?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Çiftçi tarlayı sürerek ekime hazırladı.",hl:"sürerek",kok:"sür-",ek:"-erek",tur:"Durum",soru:"Çiftçi tarlayı nasıl hazırladı?",not:"-erek: işin nasıl yapıldığını bildirir."},
+ {s:"Anne yemeği tadarak tuzunu ayarladı.",hl:"tadarak",kok:"tad-",ek:"-arak",tur:"Durum",soru:"Anne tuzunu nasıl ayarladı?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Öğrenciler sırayla konuşarak toplantıyı yürüttü.",hl:"konuşarak",kok:"konuş-",ek:"-arak",tur:"Durum",soru:"Öğrenciler toplantıyı nasıl yürüttü?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Balıkçı ağı çekerek tekneye çıktı.",hl:"çekerek",kok:"çek-",ek:"-erek",tur:"Durum",soru:"Balıkçı tekneye nasıl çıktı?",not:"-erek: işin nasıl yapıldığını bildirir."},
+ {s:"Müzisyen gitar çalarak şarkı söyledi.",hl:"çalarak",kok:"çal-",ek:"-arak",tur:"Durum",soru:"Müzisyen nasıl şarkı söyledi?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Yolcu ayağa kalkarak yer verdi.",hl:"kalkarak",kok:"kalk-",ek:"-arak",tur:"Durum",soru:"Yolcu nasıl yer verdi?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Öğretmen sınıfı dolaşarak ödevleri kontrol etti.",hl:"dolaşarak",kok:"dolaş-",ek:"-arak",tur:"Durum",soru:"Öğretmen ödevleri nasıl kontrol etti?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Kuş ağaca konarak ötmeye başladı.",hl:"konarak",kok:"kon-",ek:"-arak",tur:"Durum",soru:"Kuş nasıl ötmeye başladı?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Dilek şarkı mırıldanarak bulaşıkları yıkadı.",hl:"mırıldanarak",kok:"mırıldan-",ek:"-arak",tur:"Durum",soru:"Dilek bulaşıkları nasıl yıkadı?",not:"-arak: işin nasıl yapıldığını bildirir."},
+ {s:"Baba gazete okuyarak çayını yudumladı.",hl:"okuyarak",kok:"oku-",ek:"-yarak",tur:"Durum",soru:"Baba çayını nasıl yudumladı?",not:"Kaynaştırma harfi y: oku+y+arak"},
+ {s:"Elif şiiri ezberleyerek sahneye çıktı.",hl:"ezberleyerek",kok:"ezberle-",ek:"-yerek",tur:"Durum",soru:"Elif sahneye nasıl çıktı?",not:"Kaynaştırma harfi y: ezberle+y+erek"},
+ {s:"Kedi çatıdan atlayarak bahçeye indi.",hl:"atlayarak",kok:"atla-",ek:"-yarak",tur:"Durum",soru:"Kedi bahçeye nasıl indi?",not:"Kaynaştırma harfi y: atla+y+arak"},
+ {s:"Ayşe elini yıkayarak masaya oturdu.",hl:"yıkayarak",kok:"yıka-",ek:"-yarak",tur:"Durum",soru:"Ayşe masaya nasıl oturdu?",not:"Kaynaştırma harfi y: yıka+y+arak"},
+ {s:"Öğrenci sevinçten zıplayarak koridorda ilerledi.",hl:"zıplayarak",kok:"zıpla-",ek:"-yarak",tur:"Durum",soru:"Öğrenci koridorda nasıl ilerledi?",not:"Kaynaştırma harfi y: zıpla+y+arak"},
+ {s:"Ahmet defterini kapayarak ayağa kalktı.",hl:"kapayarak",kok:"kapa-",ek:"-yarak",tur:"Durum",soru:"Ahmet nasıl ayağa kalktı?",not:"Kaynaştırma harfi y: kapa+y+arak"},
+ {s:"Kardeşim saçını tarayarak aynaya baktı.",hl:"tarayarak",kok:"tara-",ek:"-yarak",tur:"Durum",soru:"Kardeşim aynaya nasıl baktı?",not:"Kaynaştırma harfi y: tara+y+arak"},
+ {s:"Çocuklar el sallayarak otobüsü uğurladı.",hl:"sallayarak",kok:"salla-",ek:"-yarak",tur:"Durum",soru:"Çocuklar otobüsü nasıl uğurladı?",not:"Kaynaştırma harfi y: salla+y+arak"},
+ {s:"Bebek emekleyerek odanın ortasına geldi.",hl:"emekleyerek",kok:"emekle-",ek:"-yerek",tur:"Durum",soru:"Bebek odanın ortasına nasıl geldi?",not:"Kaynaştırma harfi y: emekle+y+erek"},
+ {s:"Yolcu bavulunu taşıyarak merdivenleri çıktı.",hl:"taşıyarak",kok:"taşı-",ek:"-yarak",tur:"Durum",soru:"Yolcu merdivenleri nasıl çıktı?",not:"Kaynaştırma harfi y: taşı+y+arak"},
+ {s:"Çocuk dondurmayı yalayarak parkta yürüdü.",hl:"yalayarak",kok:"yala-",ek:"-yarak",tur:"Durum",soru:"Çocuk parkta nasıl yürüdü?",not:"Kaynaştırma harfi y: yala+y+arak"},
+ {s:"Çiçekçi buketi bağlayarak müşteriye uzattı.",hl:"bağlayarak",kok:"bağla-",ek:"-yarak",tur:"Durum",soru:"Çiçekçi buketi müşteriye nasıl uzattı?",not:"Kaynaştırma harfi y: bağla+y+arak"},
+ {s:"Yolcular otobüsü bekleyerek vakit geçirdi.",hl:"bekleyerek",kok:"bekle-",ek:"-yerek",tur:"Durum",soru:"Yolcular nasıl vakit geçirdi?",not:"Kaynaştırma harfi y: bekle+y+erek"},
+ {s:"Öğrenci soruyu anlayarak doğru cevap verdi.",hl:"anlayarak",kok:"anla-",ek:"-yarak",tur:"Durum",soru:"Öğrenci nasıl doğru cevap verdi?",not:"Kaynaştırma harfi y: anla+y+arak"},
+ {s:"Esra kitabı arayarak kütüphanede dolaştı.",hl:"arayarak",kok:"ara-",ek:"-yarak",tur:"Durum",soru:"Esra kütüphanede nasıl dolaştı?",not:"Kaynaştırma harfi y: ara+y+arak"},
+ {s:"Küçük kedi soğuktan titreyerek kapıya geldi.",hl:"titreyerek",kok:"titre-",ek:"-yerek",tur:"Durum",soru:"Kedi kapıya nasıl geldi?",not:"Kaynaştırma harfi y: titre+y+erek"},
+ {s:"Anneanne ninni söyleyerek bebeği uyuttu.",hl:"söyleyerek",kok:"söyle-",ek:"-yerek",tur:"Durum",soru:"Anneanne bebeği nasıl uyuttu?",not:"Kaynaştırma harfi y: söyle+y+erek"},
+ {s:"Doktor hastayı dinleyerek tedaviye başladı.",hl:"dinleyerek",kok:"dinle-",ek:"-yerek",tur:"Durum",soru:"Doktor tedaviye nasıl başladı?",not:"Kaynaştırma harfi y: dinle+y+erek"},
+ {s:"Esnaf müşteriyi karşılayarak dükkâna aldı.",hl:"karşılayarak",kok:"karşıla-",ek:"-yarak",tur:"Durum",soru:"Esnaf müşteriyi dükkâna nasıl aldı?",not:"Kaynaştırma harfi y: karşıla+y+arak"},
+ {s:"Seyirciler sporcuları alkışlayarak karşıladı.",hl:"alkışlayarak",kok:"alkışla-",ek:"-yarak",tur:"Durum",soru:"Seyirciler sporcuları nasıl karşıladı?",not:"Kaynaştırma harfi y: alkışla+y+arak"},
+ {s:"Pilot yolcuları selamlayarak uçağa aldı.",hl:"selamlayarak",kok:"selamla-",ek:"-yarak",tur:"Durum",soru:"Pilot yolcuları uçağa nasıl aldı?",not:"Kaynaştırma harfi y: selamla+y+arak"},
+ {s:"Küçük kız oyuncağını kucaklayarak uyudu.",hl:"kucaklayarak",kok:"kucakla-",ek:"-yarak",tur:"Durum",soru:"Küçük kız nasıl uyudu?",not:"Kaynaştırma harfi y: kucakla+y+arak"},
+ {s:"Ali çantasını alıp evden çıktı.",hl:"alıp",kok:"al-",ek:"-ıp",tur:"Durum",soru:"Ali evden nasıl çıktı?",not:"-ıp: iki eylemi birbirine bağlar."},
+ {s:"Selin kitabını açıp okumaya başladı.",hl:"açıp",kok:"aç-",ek:"-ıp",tur:"Durum",soru:"Selin okumaya nasıl başladı?",not:"-ıp: iki eylemi birbirine bağlar."},
+ {s:"Baba arabaya binip yola çıktı.",hl:"binip",kok:"bin-",ek:"-ip",tur:"Durum",soru:"Baba yola nasıl çıktı?",not:"-ip: iki eylemi birbirine bağlar."},
+ {s:"Kadın sepetini doldurup kasaya gitti.",hl:"doldurup",kok:"doldur-",ek:"-up",tur:"Durum",soru:"Kadın kasaya nasıl gitti?",not:"-up: iki eylemi birbirine bağlar."},
+ {s:"Çocuk kapıyı çalıp içeri girdi.",hl:"çalıp",kok:"çal-",ek:"-ıp",tur:"Durum",soru:"Çocuk içeri nasıl girdi?",not:"-ıp: iki eylemi birbirine bağlar."},
+ {s:"Öğretmen tahtaya yazıp açıklama yaptı.",hl:"yazıp",kok:"yaz-",ek:"-ıp",tur:"Durum",soru:"Öğretmen açıklamayı nasıl yaptı?",not:"-ıp: iki eylemi birbirine bağlar."},
+ {s:"Aslı kalemini çıkarıp deftere not aldı.",hl:"çıkarıp",kok:"çıkar-",ek:"-ıp",tur:"Durum",soru:"Aslı deftere nasıl not aldı?",not:"-ıp: iki eylemi birbirine bağlar."},
+ {s:"Dede bastonunu tutup yavaşça yürüdü.",hl:"tutup",kok:"tut-",ek:"-up",tur:"Durum",soru:"Dede yavaşça nasıl yürüdü?",not:"-up: iki eylemi birbirine bağlar."},
+ {s:"Kuş dala konup ötmeye başladı.",hl:"konup",kok:"kon-",ek:"-up",tur:"Durum",soru:"Kuş ötmeye nasıl başladı?",not:"-up: iki eylemi birbirine bağlar."},
+ {s:"Kardeşim yatağa uzanıp uykuya daldı.",hl:"uzanıp",kok:"uzan-",ek:"-ıp",tur:"Durum",soru:"Kardeşim uykuya nasıl daldı?",not:"-ıp: iki eylemi birbirine bağlar."},
+ {s:"Yolcular istasyona gelip trene bindi.",hl:"gelip",kok:"gel-",ek:"-ip",tur:"Durum",soru:"Yolcular trene nasıl bindi?",not:"-ip: iki eylemi birbirine bağlar."},
+ {s:"Komşumuz bahçeye çıkıp çiçekleri suladı.",hl:"çıkıp",kok:"çık-",ek:"-ıp",tur:"Durum",soru:"Komşumuz çiçekleri nasıl suladı?",not:"-ıp: iki eylemi birbirine bağlar."},
+ {s:"Terzi kumaşı ölçüp makasla kesti.",hl:"ölçüp",kok:"ölç-",ek:"-üp",tur:"Durum",soru:"Terzi kumaşı nasıl kesti?",not:"-üp: iki eylemi birbirine bağlar."},
+ {s:"Hasta ilacını içip dinlenmeye çekildi.",hl:"içip",kok:"iç-",ek:"-ip",tur:"Durum",soru:"Hasta dinlenmeye nasıl çekildi?",not:"-ip: iki eylemi birbirine bağlar."},
+ {s:"Çocuklar el ele tutuşup halka oldu.",hl:"tutuşup",kok:"tutuş-",ek:"-up",tur:"Durum",soru:"Çocuklar nasıl halka oldu?",not:"-up: iki eylemi birbirine bağlar."},
+ {s:"Çiftçi tohumu ekip suladı.",hl:"ekip",kok:"ek-",ek:"-ip",tur:"Durum",soru:"Çiftçi tohumu nasıl suladı?",not:"-ip: iki eylemi birbirine bağlar."},
+ {s:"Öğrenci soruyu görüp hemen cevapladı.",hl:"görüp",kok:"gör-",ek:"-üp",tur:"Durum",soru:"Öğrenci soruyu nasıl cevapladı?",not:"-üp: iki eylemi birbirine bağlar."},
+ {s:"Ressam fırçasını bırakıp pencereye yürüdü.",hl:"bırakıp",kok:"bırak-",ek:"-ıp",tur:"Durum",soru:"Ressam pencereye nasıl yürüdü?",not:"-ıp: iki eylemi birbirine bağlar."},
+ {s:"Mehmet yüzüğü bulup sahibine verdi.",hl:"bulup",kok:"bul-",ek:"-up",tur:"Durum",soru:"Mehmet yüzüğü sahibine nasıl verdi?",not:"-up: iki eylemi birbirine bağlar."},
+ {s:"Misafirler oturup çay içti.",hl:"oturup",kok:"otur-",ek:"-up",tur:"Durum",soru:"Misafirler çayı nasıl içti?",not:"-up: iki eylemi birbirine bağlar."},
+ {s:"Kaptan dümeni çevirip gemiyi limana yanaştırdı.",hl:"çevirip",kok:"çevir-",ek:"-ip",tur:"Durum",soru:"Kaptan gemiyi nasıl yanaştırdı?",not:"-ip: iki eylemi birbirine bağlar."},
+ {s:"Garson masayı silip tabakları dizdi.",hl:"silip",kok:"sil-",ek:"-ip",tur:"Durum",soru:"Garson tabakları nasıl dizdi?",not:"-ip: iki eylemi birbirine bağlar."},
+ {s:"Doktor hastayı muayene edip reçete yazdı.",hl:"edip",kok:"et- (ed-)",ek:"-ip",tur:"Durum",soru:"Doktor reçeteyi nasıl yazdı?",not:"-ip: iki eylemi birbirine bağlar."},
+ {s:"Annem sofrayı hazırlayıp misafirleri çağırdı.",hl:"hazırlayıp",kok:"hazırla-",ek:"-yıp",tur:"Durum",soru:"Annem misafirleri nasıl çağırdı?",not:"Kaynaştırma harfi y: hazırla+y+ıp"},
+ {s:"Zeynep elbisesini ütüleyip dolaba astı.",hl:"ütüleyip",kok:"ütüle-",ek:"-yip",tur:"Durum",soru:"Zeynep elbisesini nasıl astı?",not:"Kaynaştırma harfi y: ütüle+y+ip"},
+ {s:"Ahmet kapıyı kilitleyip yola çıktı.",hl:"kilitleyip",kok:"kilitle-",ek:"-yip",tur:"Durum",soru:"Ahmet yola nasıl çıktı?",not:"Kaynaştırma harfi y: kilitle+y+ip"},
+ {s:"Teyzem bavulunu toplayıp otobüse bindi.",hl:"toplayıp",kok:"topla-",ek:"-yıp",tur:"Durum",soru:"Teyzem otobüse nasıl bindi?",not:"Kaynaştırma harfi y: topla+y+ıp"},
+ {s:"Öğrenciler sınıfı temizleyip eve gitti.",hl:"temizleyip",kok:"temizle-",ek:"-yip",tur:"Durum",soru:"Öğrenciler eve nasıl gitti?",not:"Kaynaştırma harfi y: temizle+y+ip"},
+ {s:"Bebek biraz uyuyup mamasını yedi.",hl:"uyuyup",kok:"uyu-",ek:"-yup",tur:"Durum",soru:"Bebek mamasını nasıl yedi?",not:"Kaynaştırma harfi y: uyu+y+up"},
+ {s:"Kardeşim defterini kapayıp çantasına koydu.",hl:"kapayıp",kok:"kapa-",ek:"-yıp",tur:"Durum",soru:"Kardeşim defterini çantasına nasıl koydu?",not:"Kaynaştırma harfi y: kapa+y+ıp"},
+ {s:"Babam arabayı yıkayıp cilaladı.",hl:"yıkayıp",kok:"yıka-",ek:"-yıp",tur:"Durum",soru:"Babam arabayı nasıl cilaladı?",not:"Kaynaştırma harfi y: yıka+y+ıp"},
+ {s:"Küçük kız çiçeği koklayıp gülümsedi.",hl:"koklayıp",kok:"kokla-",ek:"-yıp",tur:"Durum",soru:"Küçük kız nasıl gülümsedi?",not:"Kaynaştırma harfi y: kokla+y+ıp"},
+ {s:"Nazlı kitabını okuyup rafa kaldırdı.",hl:"okuyup",kok:"oku-",ek:"-yup",tur:"Durum",soru:"Nazlı kitabını rafa nasıl kaldırdı?",not:"Kaynaştırma harfi y: oku+y+up"},
+ {s:"Müdür bayrağı selamlayıp konuşmasına başladı.",hl:"selamlayıp",kok:"selamla-",ek:"-yıp",tur:"Durum",soru:"Müdür konuşmasına nasıl başladı?",not:"Kaynaştırma harfi y: selamla+y+ıp"},
+ {s:"Aşçı soğanı doğrayıp tavaya attı.",hl:"doğrayıp",kok:"doğra-",ek:"-yıp",tur:"Durum",soru:"Aşçı soğanı tavaya nasıl attı?",not:"Kaynaştırma harfi y: doğra+y+ıp"},
+ {s:"Küçük çocuk güle güle annesine koştu.",hl:"güle güle",kok:"gül-",ek:"-e … -e",tur:"Durum",soru:"Çocuk annesine nasıl koştu?",not:"-e … -e: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Bebek emekleye emekleye kapıya ulaştı.",hl:"emekleye emekleye",kok:"emekle-",ek:"-ye … -ye",tur:"Durum",soru:"Bebek kapıya nasıl ulaştı?",not:"-ye … -ye: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Yolcular bağıra bağıra tartıştı.",hl:"bağıra bağıra",kok:"bağır-",ek:"-a … -a",tur:"Durum",soru:"Yolcular nasıl tartıştı?",not:"-a … -a: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Çocuklar ağlaya ağlaya uyudu.",hl:"ağlaya ağlaya",kok:"ağla-",ek:"-ya … -ya",tur:"Durum",soru:"Çocuklar nasıl uyudu?",not:"-ya … -ya: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Sınıf şarkı söyleye söyleye yürüdü.",hl:"söyleye söyleye",kok:"söyle-",ek:"-ye … -ye",tur:"Durum",soru:"Sınıf nasıl yürüdü?",not:"-ye … -ye: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Koşucu soluya soluya yarışı bitirdi.",hl:"soluya soluya",kok:"solu-",ek:"-ya … -ya",tur:"Durum",soru:"Koşucu yarışı nasıl bitirdi?",not:"-ya … -ya: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Hasta öksüre öksüre odaya girdi.",hl:"öksüre öksüre",kok:"öksür-",ek:"-e … -e",tur:"Durum",soru:"Hasta odaya nasıl girdi?",not:"-e … -e: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Çocuk zıplaya zıplaya eve geldi.",hl:"zıplaya zıplaya",kok:"zıpla-",ek:"-ya … -ya",tur:"Durum",soru:"Çocuk eve nasıl geldi?",not:"-ya … -ya: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Çiftçi ter döke döke çalıştı.",hl:"döke döke",kok:"dök-",ek:"-e … -e",tur:"Durum",soru:"Çiftçi nasıl çalıştı?",not:"-e … -e: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Ali bekleye bekleye uyuyakaldı.",hl:"bekleye bekleye",kok:"bekle-",ek:"-ye … -ye",tur:"Durum",soru:"Ali nasıl uyuyakaldı?",not:"-ye … -ye: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Öğrenciler bakına bakına müzeyi gezdi.",hl:"bakına bakına",kok:"bakın-",ek:"-a … -a",tur:"Durum",soru:"Öğrenciler müzeyi nasıl gezdi?",not:"-a … -a: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Dede anlata anlata bitiremedi.",hl:"anlata anlata",kok:"anlat-",ek:"-a … -a",tur:"Durum",soru:"Dede nasıl bitiremedi?",not:"-a … -a: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Kız kardeşim gide gide yoruldu.",hl:"gide gide",kok:"git- (gid-)",ek:"-e … -e",tur:"Durum",soru:"Kız kardeşim nasıl yoruldu?",not:"-e … -e: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Çocuklar oyun oynaya oynaya büyüdü.",hl:"oynaya oynaya",kok:"oyna-",ek:"-ya … -ya",tur:"Durum",soru:"Çocuklar nasıl büyüdü?",not:"-ya … -ya: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Kuşlar öte öte uçtu.",hl:"öte öte",kok:"öt-",ek:"-e … -e",tur:"Durum",soru:"Kuşlar nasıl uçtu?",not:"-e … -e: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Öğrenci dinleye dinleye öğrendi.",hl:"dinleye dinleye",kok:"dinle-",ek:"-ye … -ye",tur:"Durum",soru:"Öğrenci nasıl öğrendi?",not:"-ye … -ye: tekrarlanan (ikileme) durum zarf-fiilidir."},
+ {s:"Kimseye görünmeden evden çıktı.",hl:"görünmeden",kok:"görün-",ek:"-meden",tur:"Durum",soru:"Evden nasıl çıktı?",not:"-meden: olumsuz durum zarf-fiilidir."},
+ {s:"Kedi ses çıkarmadan odaya girdi.",hl:"çıkarmadan",kok:"çıkar-",ek:"-madan",tur:"Durum",soru:"Kedi odaya nasıl girdi?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Yemeğini bitirmeden masadan kalktı.",hl:"bitirmeden",kok:"bitir-",ek:"-meden",tur:"Durum",soru:"Masadan nasıl kalktı?",not:"-meden: olumsuz durum zarf-fiilidir."},
+ {s:"Sınavda hiç düşünmeden cevap verdi.",hl:"düşünmeden",kok:"düşün-",ek:"-meden",tur:"Durum",soru:"Nasıl cevap verdi?",not:"-meden: olumsuz durum zarf-fiilidir."},
+ {s:"Öğrenciler izin almadan bahçeye çıktı.",hl:"almadan",kok:"al-",ek:"-madan",tur:"Durum",soru:"Öğrenciler bahçeye nasıl çıktı?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Annem ışığı yakmadan odaya girdi.",hl:"yakmadan",kok:"yak-",ek:"-madan",tur:"Durum",soru:"Annem odaya nasıl girdi?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Ali bize haber vermeden geldi.",hl:"vermeden",kok:"ver-",ek:"-meden",tur:"Durum",soru:"Ali nasıl geldi?",not:"-meden: olumsuz durum zarf-fiilidir."},
+ {s:"Çocuk ağlamadan dişçi koltuğunda oturdu.",hl:"ağlamadan",kok:"ağla-",ek:"-madan",tur:"Durum",soru:"Çocuk dişçi koltuğunda nasıl oturdu?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Okuldan geç kalmadan eve döndü.",hl:"kalmadan",kok:"kal-",ek:"-madan",tur:"Durum",soru:"Eve nasıl döndü?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Hasta gözünü kırpmadan tavana baktı.",hl:"kırpmadan",kok:"kırp-",ek:"-madan",tur:"Durum",soru:"Hasta tavana nasıl baktı?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Yolcu duraktan inmeden telefonla konuştu.",hl:"inmeden",kok:"in-",ek:"-meden",tur:"Durum",soru:"Yolcu nasıl konuştu?",not:"-meden: olumsuz durum zarf-fiilidir."},
+ {s:"Bahçıvan dinlenmeden çalıştı.",hl:"dinlenmeden",kok:"dinlen-",ek:"-meden",tur:"Durum",soru:"Bahçıvan nasıl çalıştı?",not:"-meden: olumsuz durum zarf-fiilidir."},
+ {s:"Kız kardeşim sormadan oyuncağımı aldı.",hl:"sormadan",kok:"sor-",ek:"-madan",tur:"Durum",soru:"Kız kardeşim oyuncağımı nasıl aldı?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Sporcu pes etmeden mücadele etti.",hl:"etmeden",kok:"et-",ek:"-meden",tur:"Durum",soru:"Sporcu nasıl mücadele etti?",not:"-meden: olumsuz durum zarf-fiilidir."},
+ {s:"Dede çayını soğutmadan içti.",hl:"soğutmadan",kok:"soğut-",ek:"-madan",tur:"Durum",soru:"Dede çayını nasıl içti?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Müşteri etiketine bakmadan ürünü aldı.",hl:"bakmadan",kok:"bak-",ek:"-madan",tur:"Durum",soru:"Müşteri ürünü nasıl aldı?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Elif ders çalışmadan sınava girdi.",hl:"çalışmadan",kok:"çalış-",ek:"-madan",tur:"Durum",soru:"Elif sınava nasıl girdi?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Baba gözlüğünü takmadan gazete okudu.",hl:"takmadan",kok:"tak-",ek:"-madan",tur:"Durum",soru:"Baba gazeteyi nasıl okudu?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Çocuklar el yıkamadan sofraya oturdu.",hl:"yıkamadan",kok:"yıka-",ek:"-madan",tur:"Durum",soru:"Çocuklar sofraya nasıl oturdu?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Gezgin haritaya danışmadan yola çıktı.",hl:"danışmadan",kok:"danış-",ek:"-madan",tur:"Durum",soru:"Gezgin yola nasıl çıktı?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Ressam fırçayı bırakmadan resim yaptı.",hl:"bırakmadan",kok:"bırak-",ek:"-madan",tur:"Durum",soru:"Ressam nasıl resim yaptı?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Küçük kız durmadan koştu.",hl:"durmadan",kok:"dur-",ek:"-madan",tur:"Durum",soru:"Küçük kız nasıl koştu?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Ahmet susmadan konuştu.",hl:"susmadan",kok:"sus-",ek:"-madan",tur:"Durum",soru:"Ahmet nasıl konuştu?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Bebek uyanmadan odadan çıktık.",hl:"uyanmadan",kok:"uyan-",ek:"-madan",tur:"Durum",soru:"Odadan nasıl çıktık?",not:"-madan: olumsuz durum zarf-fiilidir."},
+ {s:"Yolcular tartışmaksızın sıraya girdi.",hl:"tartışmaksızın",kok:"tartış-",ek:"-maksızın",tur:"Durum",soru:"Yolcular sıraya nasıl girdi?",not:"-maksızın: -madan ile aynı anlamdadır."},
+ {s:"Hakem hiç bekletmeksizin kararını verdi.",hl:"bekletmeksizin",kok:"beklet-",ek:"-meksizin",tur:"Durum",soru:"Hakem kararını nasıl verdi?",not:"-meksizin: -madan ile aynı anlamdadır."},
+ {s:"Öğrenci durmaksızın çalıştı.",hl:"durmaksızın",kok:"dur-",ek:"-maksızın",tur:"Durum",soru:"Öğrenci nasıl çalıştı?",not:"-maksızın: -madan ile aynı anlamdadır."},
+ {s:"Yağmur dinmeksizin yağdı.",hl:"dinmeksizin",kok:"din-",ek:"-meksizin",tur:"Durum",soru:"Yağmur nasıl yağdı?",not:"-meksizin: -madan ile aynı anlamdadır."},
+ {s:"Dede yorulmaksızın bahçeyi suladı.",hl:"yorulmaksızın",kok:"yorul-",ek:"-maksızın",tur:"Durum",soru:"Dede bahçeyi nasıl suladı?",not:"-maksızın: -madan ile aynı anlamdadır."},
+ {s:"Kız kardeşim şikâyet etmeksizin işini bitirdi.",hl:"etmeksizin",kok:"et-",ek:"-meksizin",tur:"Durum",soru:"Kız kardeşim işini nasıl bitirdi?",not:"-meksizin: -madan ile aynı anlamdadır."},
+ {s:"Müdür kimseye söylemeksizin okuldan ayrıldı.",hl:"söylemeksizin",kok:"söyle-",ek:"-meksizin",tur:"Durum",soru:"Müdür okuldan nasıl ayrıldı?",not:"-meksizin: -madan ile aynı anlamdadır."},
+ {s:"Çocuk korkmaksızın karanlık odaya girdi.",hl:"korkmaksızın",kok:"kork-",ek:"-maksızın",tur:"Durum",soru:"Çocuk karanlık odaya nasıl girdi?",not:"-maksızın: -madan ile aynı anlamdadır."},
+ {s:"Sporcu rüzgâr gibi esercesine koştu.",hl:"esercesine",kok:"es-",ek:"-ercesine",tur:"Durum",soru:"Sporcu nasıl koştu?",not:"-ercesine: benzetme yoluyla durum bildirir."},
+ {s:"Müzisyen herkesi büyülercesine çaldı.",hl:"büyülercesine",kok:"büyüle-",ek:"-ercesine",tur:"Durum",soru:"Müzisyen nasıl çaldı?",not:"-ercesine: benzetme yoluyla durum bildirir."},
+ {s:"Yağmur boşanırcasına yağdı.",hl:"boşanırcasına",kok:"boşan-",ek:"-ırcasına",tur:"Durum",soru:"Yağmur nasıl yağdı?",not:"-ırcasına: benzetme yoluyla durum bildirir."},
+ {s:"Çocuk ağlarcasına yalvardı.",hl:"ağlarcasına",kok:"ağla-",ek:"-r + -casına",tur:"Durum",soru:"Çocuk nasıl yalvardı?",not:"-r + -casına: benzetme yoluyla durum bildirir."},
+ {s:"Rüzgâr uğuldarcasına esti.",hl:"uğuldarcasına",kok:"uğulda-",ek:"-r + -casına",tur:"Durum",soru:"Rüzgâr nasıl esti?",not:"-r + -casına: benzetme yoluyla durum bildirir."},
+ {s:"Küçük kız dans edercesine yürüdü.",hl:"edercesine",kok:"et- (ed-)",ek:"-ercesine",tur:"Durum",soru:"Küçük kız nasıl yürüdü?",not:"-ercesine: benzetme yoluyla durum bildirir."},
+ {s:"Çocuk sınıfa koşarcasına girdi.",hl:"koşarcasına",kok:"koş-",ek:"-arcasına",tur:"Durum",soru:"Çocuk sınıfa nasıl girdi?",not:"-arcasına: benzetme yoluyla durum bildirir."},
+ {s:"Ses duvarlara çarparcasına yankılandı.",hl:"çarparcasına",kok:"çarp-",ek:"-arcasına",tur:"Durum",soru:"Ses nasıl yankılandı?",not:"-arcasına: benzetme yoluyla durum bildirir."},
+ {s:"Elif öfkeyle patlarcasına bağırdı.",hl:"patlarcasına",kok:"patla-",ek:"-r + -casına",tur:"Durum",soru:"Elif nasıl bağırdı?",not:"-r + -casına: benzetme yoluyla durum bildirir."},
+ {s:"Güneş yakarcasına parladı.",hl:"yakarcasına",kok:"yak-",ek:"-arcasına",tur:"Durum",soru:"Güneş nasıl parladı?",not:"-arcasına: benzetme yoluyla durum bildirir."},
+ {s:"Misafirler gidince ortalık sessizleşti.",hl:"gidince",kok:"git- (gid-)",ek:"-ince",tur:"Zaman",soru:"Ortalık ne zaman sessizleşti?",not:"-ince: eylemin ne zaman olduğunu bildirir."},
+ {s:"Yağmur dinince çocuklar sokağa çıktı.",hl:"dinince",kok:"din-",ek:"-ince",tur:"Zaman",soru:"Çocuklar ne zaman sokağa çıktı?",not:"-ince: eylemin ne zaman olduğunu bildirir."},
+ {s:"Öğretmen sınıfa girince herkes ayağa kalktı.",hl:"girince",kok:"gir-",ek:"-ince",tur:"Zaman",soru:"Herkes ne zaman ayağa kalktı?",not:"-ince: eylemin ne zaman olduğunu bildirir."},
+ {s:"Zil çalınca öğrenciler dışarı koştu.",hl:"çalınca",kok:"çal-",ek:"-ınca",tur:"Zaman",soru:"Öğrenciler ne zaman dışarı koştu?",not:"-ınca: eylemin ne zaman olduğunu bildirir."},
+ {s:"Güneş batınca hava serinledi.",hl:"batınca",kok:"bat-",ek:"-ınca",tur:"Zaman",soru:"Hava ne zaman serinledi?",not:"-ınca: eylemin ne zaman olduğunu bildirir."},
+ {s:"Baba işten dönünce yemeğe oturduk.",hl:"dönünce",kok:"dön-",ek:"-ünce",tur:"Zaman",soru:"Yemeğe ne zaman oturduk?",not:"-ünce: eylemin ne zaman olduğunu bildirir."},
+ {s:"Hasta iyileşince taburcu edildi.",hl:"iyileşince",kok:"iyileş-",ek:"-ince",tur:"Zaman",soru:"Hasta ne zaman taburcu edildi?",not:"-ince: eylemin ne zaman olduğunu bildirir."},
+ {s:"Kar yağınca çocuklar kızağa koştu.",hl:"yağınca",kok:"yağ-",ek:"-ınca",tur:"Zaman",soru:"Çocuklar ne zaman kızağa koştu?",not:"-ınca: eylemin ne zaman olduğunu bildirir."},
+ {s:"Müdür konuşunca salon sessizleşti.",hl:"konuşunca",kok:"konuş-",ek:"-unca",tur:"Zaman",soru:"Salon ne zaman sessizleşti?",not:"-unca: eylemin ne zaman olduğunu bildirir."},
+ {s:"Çocuk yorulunca uykuya daldı.",hl:"yorulunca",kok:"yorul-",ek:"-unca",tur:"Zaman",soru:"Çocuk ne zaman uykuya daldı?",not:"-unca: eylemin ne zaman olduğunu bildirir."},
+ {s:"Kapı açılınca soğuk hava içeri doldu.",hl:"açılınca",kok:"açıl-",ek:"-ınca",tur:"Zaman",soru:"Soğuk hava ne zaman içeri doldu?",not:"-ınca: eylemin ne zaman olduğunu bildirir."},
+ {s:"Ayşe gülünce herkes gülümsedi.",hl:"gülünce",kok:"gül-",ek:"-ünce",tur:"Zaman",soru:"Herkes ne zaman gülümsedi?",not:"-ünce: eylemin ne zaman olduğunu bildirir."},
+ {s:"Yolcu otobüsten inince taksiye bindi.",hl:"inince",kok:"in-",ek:"-ince",tur:"Zaman",soru:"Yolcu ne zaman taksiye bindi?",not:"-ince: eylemin ne zaman olduğunu bildirir."},
+ {s:"Dede uyanınca çayını istedi.",hl:"uyanınca",kok:"uyan-",ek:"-ınca",tur:"Zaman",soru:"Dede ne zaman çayını istedi?",not:"-ınca: eylemin ne zaman olduğunu bildirir."},
+ {s:"Balık oltaya takılınca olta yaylandı.",hl:"takılınca",kok:"takıl-",ek:"-ınca",tur:"Zaman",soru:"Olta ne zaman yaylandı?",not:"-ınca: eylemin ne zaman olduğunu bildirir."},
+ {s:"Sabah olunca horozlar öter.",hl:"olunca",kok:"ol-",ek:"-unca",tur:"Zaman",soru:"Horozlar ne zaman öter?",not:"-unca: eylemin ne zaman olduğunu bildirir."},
+ {s:"Yemek pişince masayı kurduk.",hl:"pişince",kok:"piş-",ek:"-ince",tur:"Zaman",soru:"Masayı ne zaman kurduk?",not:"-ince: eylemin ne zaman olduğunu bildirir."},
+ {s:"Ahmet haberi öğrenince çok sevindi.",hl:"öğrenince",kok:"öğren-",ek:"-ince",tur:"Zaman",soru:"Ahmet ne zaman çok sevindi?",not:"-ince: eylemin ne zaman olduğunu bildirir."},
+ {s:"Sınav kâğıtları dağıtılınca sınıf sustu.",hl:"dağıtılınca",kok:"dağıtıl-",ek:"-ınca",tur:"Zaman",soru:"Sınıf ne zaman sustu?",not:"-ınca: eylemin ne zaman olduğunu bildirir."},
+ {s:"Çay demlenince bardaklara dolduruldu.",hl:"demlenince",kok:"demlen-",ek:"-ince",tur:"Zaman",soru:"Çay ne zaman bardaklara dolduruldu?",not:"-ince: eylemin ne zaman olduğunu bildirir."},
+ {s:"Ders başlayınca herkes sustu.",hl:"başlayınca",kok:"başla-",ek:"-yınca",tur:"Zaman",soru:"Herkes ne zaman sustu?",not:"Kaynaştırma harfi y: başla+y+ınca"},
+ {s:"Dede bahçeyi sulayınca çayını içti.",hl:"sulayınca",kok:"sula-",ek:"-yınca",tur:"Zaman",soru:"Dede çayını ne zaman içti?",not:"Kaynaştırma harfi y: sula+y+ınca"},
+ {s:"Çocuk büyüyünce doktor olacak.",hl:"büyüyünce",kok:"büyü-",ek:"-yünce",tur:"Zaman",soru:"Çocuk ne zaman doktor olacak?",not:"Kaynaştırma harfi y: büyü+y+ünce"},
+ {s:"Ben şiiri okuyunca sen alkışla.",hl:"okuyunca",kok:"oku-",ek:"-yunca",tur:"Zaman",soru:"Sen ne zaman alkışla?",not:"Kaynaştırma harfi y: oku+y+unca"},
+ {s:"Kapıyı kapayınca rüzgâr durdu.",hl:"kapayınca",kok:"kapa-",ek:"-yınca",tur:"Zaman",soru:"Rüzgâr ne zaman durdu?",not:"Kaynaştırma harfi y: kapa+y+ınca"},
+ {s:"Annem çayı demleyince bizi çağırdı.",hl:"demleyince",kok:"demle-",ek:"-yince",tur:"Zaman",soru:"Annem bizi ne zaman çağırdı?",not:"Kaynaştırma harfi y: demle+y+ince"},
+ {s:"Duvarı boyayınca oda aydınlandı.",hl:"boyayınca",kok:"boya-",ek:"-yınca",tur:"Zaman",soru:"Oda ne zaman aydınlandı?",not:"Kaynaştırma harfi y: boya+y+ınca"},
+ {s:"Kardeşim saçını tarayınca aynaya baktı.",hl:"tarayınca",kok:"tara-",ek:"-yınca",tur:"Zaman",soru:"Kardeşim aynaya ne zaman baktı?",not:"Kaynaştırma harfi y: tara+y+ınca"},
+ {s:"Müzisyen şarkıyı söyleyince salon alkışladı.",hl:"söyleyince",kok:"söyle-",ek:"-yince",tur:"Zaman",soru:"Salon ne zaman alkışladı?",not:"Kaynaştırma harfi y: söyle+y+ince"},
+ {s:"Ahmet bavulu toplayınca yola çıktı.",hl:"toplayınca",kok:"topla-",ek:"-yınca",tur:"Zaman",soru:"Ahmet yola ne zaman çıktı?",not:"Kaynaştırma harfi y: topla+y+ınca"},
+ {s:"Annem yemek yaparken şarkı söyler.",hl:"yaparken",kok:"yap-",ek:"-ar + -ken",tur:"Zaman",soru:"Annem ne zaman şarkı söyler?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Çocuklar oynarken yağmur başladı.",hl:"oynarken",kok:"oyna-",ek:"-r + -ken",tur:"Zaman",soru:"Yağmur ne zaman başladı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Ders çalışırken telefonu kapattı.",hl:"çalışırken",kok:"çalış-",ek:"-ır + -ken",tur:"Zaman",soru:"Telefonu ne zaman kapattı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Ben uyurken kapı çalındı.",hl:"uyurken",kok:"uyu-",ek:"-r + -ken",tur:"Zaman",soru:"Kapı ne zaman çalındı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Yolda giderken eski öğretmenimi gördüm.",hl:"giderken",kok:"git- (gid-)",ek:"-er + -ken",tur:"Zaman",soru:"Öğretmenimi ne zaman gördüm?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Dede gazete okurken uyuyakaldı.",hl:"okurken",kok:"oku-",ek:"-r + -ken",tur:"Zaman",soru:"Dede ne zaman uyuyakaldı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Yemek pişerken mutfak güzel koktu.",hl:"pişerken",kok:"piş-",ek:"-er + -ken",tur:"Zaman",soru:"Mutfak ne zaman güzel koktu?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Misafirler gelirken pasta aldık.",hl:"gelirken",kok:"gel-",ek:"-ir + -ken",tur:"Zaman",soru:"Pastayı ne zaman aldık?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Ali duş alırken telefon çaldı.",hl:"alırken",kok:"al-",ek:"-ır + -ken",tur:"Zaman",soru:"Telefon ne zaman çaldı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Çocuk büyürken boyu hızla uzadı.",hl:"büyürken",kok:"büyü-",ek:"-r + -ken",tur:"Zaman",soru:"Boyu ne zaman hızla uzadı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Tren geçerken yer titredi.",hl:"geçerken",kok:"geç-",ek:"-er + -ken",tur:"Zaman",soru:"Yer ne zaman titredi?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Kız kardeşim ders dinlerken not aldı.",hl:"dinlerken",kok:"dinle-",ek:"-r + -ken",tur:"Zaman",soru:"Not ne zaman aldı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Baba araba sürerken radyo dinler.",hl:"sürerken",kok:"sür-",ek:"-er + -ken",tur:"Zaman",soru:"Baba ne zaman radyo dinler?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Sınıfa girerken selam verdi.",hl:"girerken",kok:"gir-",ek:"-er + -ken",tur:"Zaman",soru:"Ne zaman selam verdi?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Yağmur yağarken güneş açtı.",hl:"yağarken",kok:"yağ-",ek:"-ar + -ken",tur:"Zaman",soru:"Güneş ne zaman açtı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Çay içerken sohbet ettik.",hl:"içerken",kok:"iç-",ek:"-er + -ken",tur:"Zaman",soru:"Ne zaman sohbet ettik?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Öğrenciler yazarken öğretmen dolaştı.",hl:"yazarken",kok:"yaz-",ek:"-ar + -ken",tur:"Zaman",soru:"Öğretmen ne zaman dolaştı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Tavşan koşarken kulakları sallandı.",hl:"koşarken",kok:"koş-",ek:"-ar + -ken",tur:"Zaman",soru:"Kulakları ne zaman sallandı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Balıkçı ağ çekerken martılar yanına geldi.",hl:"çekerken",kok:"çek-",ek:"-er + -ken",tur:"Zaman",soru:"Martılar ne zaman yanına geldi?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Öğretmen ders anlatırken tahtaya çizim yaptı.",hl:"anlatırken",kok:"anlat-",ek:"-ır + -ken",tur:"Zaman",soru:"Tahtaya ne zaman çizim yaptı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Çocuk yatarken annesi masal okudu.",hl:"yatarken",kok:"yat-",ek:"-ar + -ken",tur:"Zaman",soru:"Annesi ne zaman masal okudu?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Pencereden bakarken bir kuş gördüm.",hl:"bakarken",kok:"bak-",ek:"-ar + -ken",tur:"Zaman",soru:"Bir kuşu ne zaman gördüm?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Bebek gülerken yanakları çukurlaştı.",hl:"gülerken",kok:"gül-",ek:"-er + -ken",tur:"Zaman",soru:"Yanakları ne zaman çukurlaştı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Bisiklete binerken kaskını taktı.",hl:"binerken",kok:"bin-",ek:"-er + -ken",tur:"Zaman",soru:"Kaskını ne zaman taktı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Merdiven çıkarken nefes nefese kaldı.",hl:"çıkarken",kok:"çık-",ek:"-ar + -ken",tur:"Zaman",soru:"Ne zaman nefes nefese kaldı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Öğretmen konuşurken sınıf sessizdi.",hl:"konuşurken",kok:"konuş-",ek:"-ur + -ken",tur:"Zaman",soru:"Sınıf ne zaman sessizdi?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Kuş uçarken kanatlarını çırptı.",hl:"uçarken",kok:"uç-",ek:"-ar + -ken",tur:"Zaman",soru:"Kuş kanatlarını ne zaman çırptı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Bebek emerken uyuyakaldı.",hl:"emerken",kok:"em-",ek:"-er + -ken",tur:"Zaman",soru:"Bebek ne zaman uyuyakaldı?",not:"-ken: eylemlerin aynı anda olduğunu bildirir."},
+ {s:"Öğrenci çalıştıkça başarısı arttı.",hl:"çalıştıkça",kok:"çalış-",ek:"-tıkça",tur:"Durum",soru:"Başarısı ne zaman arttı?",not:"-tıkça: işin nasıl yapıldığını bildirir."},
+ {s:"Dede yürüdükçe yorgunluğunu unuttu.",hl:"yürüdükçe",kok:"yürü-",ek:"-dükçe",tur:"Zaman",soru:"Yorgunluğunu ne zaman unuttu?",not:"-dükçe: tekrarlanan eylemde zaman bildirir."},
+ {s:"Hava soğudukça odalar buz gibi oldu.",hl:"soğudukça",kok:"soğu-",ek:"-dukça",tur:"Zaman",soru:"Odalar ne zaman buz gibi oldu?",not:"-dukça: tekrarlanan eylemde zaman bildirir."},
+ {s:"Çocuğun öğrendikçe merakı artar.",hl:"öğrendikçe",kok:"öğren-",ek:"-dikçe",tur:"Zaman",soru:"Merakı ne zaman artar?",not:"-dikçe: tekrarlanan eylemde zaman bildirir."},
+ {s:"Güneş yükseldikçe sis dağıldı.",hl:"yükseldikçe",kok:"yüksel-",ek:"-dikçe",tur:"Zaman",soru:"Sis ne zaman dağıldı?",not:"-dikçe: tekrarlanan eylemde zaman bildirir."},
+ {s:"Yolda gittikçe hava ısındı.",hl:"gittikçe",kok:"git-",ek:"-tikçe",tur:"Durum",soru:"Hava ne zaman ısındı?",not:"-tikçe: işin nasıl yapıldığını bildirir."},
+ {s:"Şarkı söyledikçe neşelendi.",hl:"söyledikçe",kok:"söyle-",ek:"-dikçe",tur:"Zaman",soru:"Ne zaman neşelendi?",not:"-dikçe: tekrarlanan eylemde zaman bildirir."},
+ {s:"Resim yaptıkça kendine güveni arttı.",hl:"yaptıkça",kok:"yap-",ek:"-tıkça",tur:"Durum",soru:"Kendine güveni ne zaman arttı?",not:"-tıkça: işin nasıl yapıldığını bildirir."},
+ {s:"Annem anlattıkça heyecanımız büyüdü.",hl:"anlattıkça",kok:"anlat-",ek:"-tıkça",tur:"Durum",soru:"Heyecanımız ne zaman büyüdü?",not:"-tıkça: işin nasıl yapıldığını bildirir."},
+ {s:"Kapıya yaklaştıkça sesler netleşti.",hl:"yaklaştıkça",kok:"yaklaş-",ek:"-tıkça",tur:"Durum",soru:"Sesler ne zaman netleşti?",not:"-tıkça: işin nasıl yapıldığını bildirir."},
+ {s:"Manzarayı gördükçe şaşırdı.",hl:"gördükçe",kok:"gör-",ek:"-dükçe",tur:"Zaman",soru:"Ne zaman şaşırdı?",not:"-dükçe: tekrarlanan eylemde zaman bildirir."},
+ {s:"Otobüsü bekledikçe sabırsızlandı.",hl:"bekledikçe",kok:"bekle-",ek:"-dikçe",tur:"Zaman",soru:"Ne zaman sabırsızlandı?",not:"-dikçe: tekrarlanan eylemde zaman bildirir."},
+ {s:"Para biriktirdikçe hayalleri yakınlaştı.",hl:"biriktirdikçe",kok:"biriktir-",ek:"-dikçe",tur:"Zaman",soru:"Hayalleri ne zaman yakınlaştı?",not:"-dikçe: tekrarlanan eylemde zaman bildirir."},
+ {s:"Müziği dinledikçe daha çok sevdi.",hl:"dinledikçe",kok:"dinle-",ek:"-dikçe",tur:"Zaman",soru:"Müziği ne zaman daha çok sevdi?",not:"-dikçe: tekrarlanan eylemde zaman bildirir."},
+ {s:"Hızlı koştukça nefesi hızlandı.",hl:"koştukça",kok:"koş-",ek:"-tukça",tur:"Durum",soru:"Nefesi ne zaman hızlandı?",not:"-tukça: işin nasıl yapıldığını bildirir."},
+ {s:"Dede uyudukça dinçleşti.",hl:"uyudukça",kok:"uyu-",ek:"-dukça",tur:"Zaman",soru:"Dede ne zaman dinçleşti?",not:"-dukça: tekrarlanan eylemde zaman bildirir."},
+ {s:"Yeni eve taşınalı bir yıl oldu.",hl:"taşınalı",kok:"taşın-",ek:"-alı",tur:"Zaman",soru:"Ne zamandan beri bir yıl oldu?",not:"-alı: eylemin başlangıcından beri geçen zamanı bildirir."},
+ {s:"Kardeşim doğalı evimiz çok neşeli.",hl:"doğalı",kok:"doğ-",ek:"-alı",tur:"Zaman",soru:"Evimiz ne zamandan beri neşeli?",not:"-alı: eylemin başlangıcından beri geçen zamanı bildirir."},
+ {s:"Seni görmeyeli çok zaman geçti.",hl:"görmeyeli",kok:"gör-",ek:"-meyeli",tur:"Zaman",soru:"Ne zamandan beri çok zaman geçti?",not:"-meyeli: eylemin başlangıcından beri geçen zamanı bildirir."},
+ {s:"Bu şehre geleli beş ay oldu.",hl:"geleli",kok:"gel-",ek:"-eli",tur:"Zaman",soru:"Ne zamandan beri beş ay oldu?",not:"-eli: eylemin başlangıcından beri geçen zamanı bildirir."},
+ {s:"Kitabı okuyalı bir hafta geçti.",hl:"okuyalı",kok:"oku-",ek:"-yalı",tur:"Zaman",soru:"Ne zamandan beri bir hafta geçti?",not:"Kaynaştırma harfi y: oku+y+alı"},
+ {s:"Kuşlar göç edeli bahçe sessiz.",hl:"edeli",kok:"et- (ed-)",ek:"-eli",tur:"Zaman",soru:"Bahçe ne zamandan beri sessiz?",not:"-eli: eylemin başlangıcından beri geçen zamanı bildirir."},
+ {s:"Yağmur yağalı yollar çamur oldu.",hl:"yağalı",kok:"yağ-",ek:"-alı",tur:"Zaman",soru:"Yollar ne zamandan beri çamur?",not:"-alı: eylemin başlangıcından beri geçen zamanı bildirir."},
+ {s:"Dedem emekli olalı bahçeyle ilgileniyor.",hl:"olalı",kok:"ol-",ek:"-alı",tur:"Zaman",soru:"Dedem ne zamandan beri bahçeyle ilgileniyor?",not:"-alı: eylemin başlangıcından beri geçen zamanı bildirir."},
+ {s:"Bu kitabı yazalı on yıl geçti.",hl:"yazalı",kok:"yaz-",ek:"-alı",tur:"Zaman",soru:"Ne zamandan beri on yıl geçti?",not:"-alı: eylemin başlangıcından beri geçen zamanı bildirir."},
+ {s:"Çiçekleri sulayalı bahçe çok canlı.",hl:"sulayalı",kok:"sula-",ek:"-yalı",tur:"Zaman",soru:"Bahçe ne zamandan beri çok canlı?",not:"Kaynaştırma harfi y: sula+y+alı"},
+ {s:"Seninle konuşalı kendimi iyi hissediyorum.",hl:"konuşalı",kok:"konuş-",ek:"-alı",tur:"Zaman",soru:"Kendimi ne zamandan beri iyi hissediyorum?",not:"-alı: eylemin başlangıcından beri geçen zamanı bildirir."},
+ {s:"Bu resmi çizeli günler geçti.",hl:"çizeli",kok:"çiz-",ek:"-eli",tur:"Zaman",soru:"Ne zamandan beri günler geçti?",not:"-eli: eylemin başlangıcından beri geçen zamanı bildirir."},
+ {s:"Ders biter bitmez herkes kantine koştu.",hl:"biter bitmez",kok:"bit-",ek:"-er … -mez",tur:"Zaman",soru:"Herkes ne zaman kantine koştu?",not:"-er … -mez: eylemin hemen ardından olanı bildirir."},
+ {s:"Kapı açılır açılmaz içeri daldılar.",hl:"açılır açılmaz",kok:"açıl-",ek:"-ır … -maz",tur:"Zaman",soru:"Ne zaman içeri daldılar?",not:"-ır … -maz: eylemin hemen ardından olanı bildirir."},
+ {s:"Haberi duyar duymaz annesini aradı.",hl:"duyar duymaz",kok:"duy-",ek:"-ar … -maz",tur:"Zaman",soru:"Annesini ne zaman aradı?",not:"-ar … -maz: eylemin hemen ardından olanı bildirir."},
+ {s:"Sabah olur olmaz yola çıktık.",hl:"olur olmaz",kok:"ol-",ek:"-ur … -maz",tur:"Zaman",soru:"Ne zaman yola çıktık?",not:"-ur … -maz: eylemin hemen ardından olanı bildirir."},
+ {s:"Öğretmen odaya varır varmaz yoklama aldı.",hl:"varır varmaz",kok:"var-",ek:"-ır … -maz",tur:"Zaman",soru:"Öğretmen ne zaman yoklama aldı?",not:"-ır … -maz: eylemin hemen ardından olanı bildirir."},
+ {s:"Çocuk yatağa uzanır uzanmaz uyudu.",hl:"uzanır uzanmaz",kok:"uzan-",ek:"-ır … -maz",tur:"Zaman",soru:"Çocuk ne zaman uyudu?",not:"-ır … -maz: eylemin hemen ardından olanı bildirir."},
+ {s:"Kuş kafesi görür görmez kaçtı.",hl:"görür görmez",kok:"gör-",ek:"-ür … -mez",tur:"Zaman",soru:"Kuş ne zaman kaçtı?",not:"-ür … -mez: eylemin hemen ardından olanı bildirir."},
+ {s:"Gün doğar doğmaz yola düştük.",hl:"doğar doğmaz",kok:"doğ-",ek:"-ar … -maz",tur:"Zaman",soru:"Ne zaman yola düştük?",not:"-ar … -maz: eylemin hemen ardından olanı bildirir."},
+ {s:"Kapı vurulur vurulmaz açıldı.",hl:"vurulur vurulmaz",kok:"vurul-",ek:"-ur … -maz",tur:"Zaman",soru:"Kapı ne zaman açıldı?",not:"-ur … -maz: eylemin hemen ardından olanı bildirir."},
+ {s:"Yemek gelir gelmez yemeğe başladık.",hl:"gelir gelmez",kok:"gel-",ek:"-ir … -mez",tur:"Zaman",soru:"Ne zaman yemeğe başladık?",not:"-ir … -mez: eylemin hemen ardından olanı bildirir."},
+ {s:"Çiçek açar açmaz arılar geldi.",hl:"açar açmaz",kok:"aç-",ek:"-ar … -maz",tur:"Zaman",soru:"Arılar ne zaman geldi?",not:"-ar … -maz: eylemin hemen ardından olanı bildirir."},
+ {s:"Bebek ağlar ağlamaz annesi koştu.",hl:"ağlar ağlamaz",kok:"ağla-",ek:"-r … -maz",tur:"Zaman",soru:"Annesi ne zaman koştu?",not:"-r … -maz: eylemin hemen ardından olanı bildirir."},
+ {s:"Kuşlar yuvadan çıkar çıkmaz ötmeye başladı.",hl:"çıkar çıkmaz",kok:"çık-",ek:"-ar … -maz",tur:"Zaman",soru:"Kuşlar ne zaman ötmeye başladı?",not:"-ar … -maz: eylemin hemen ardından olanı bildirir."},
+ {s:"Sınav başlar başlamaz sessizlik oldu.",hl:"başlar başlamaz",kok:"başla-",ek:"-r … -maz",tur:"Zaman",soru:"Ne zaman sessizlik oldu?",not:"-r … -maz: eylemin hemen ardından olanı bildirir."}
 ];
 DB0.forEach(e=>{ if(e.s.indexOf(e.hl)<0) console.warn('Vurgu bulunamadı:',e.s); });
+/* Her soruya cümlesinden türetilen kalıcı bir kimlik verilir (havuz sırası değişse de bozulmaz) */
+function qHash(s){let h=5381;for(let i=0;i<s.length;i++){h=((h<<5)+h+s.charCodeAt(i))|0;}return (h>>>0).toString(36);}
+DB0.forEach(e=>{ e.id=qHash(e.s); });
 const DB=DB0.slice();
 for(let i=DB.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[DB[i],DB[j]]=[DB[j],DB[i]];}
 const N=DB.length, mod=i=>((i%N)+N)%N;
+
+/* ---- Görülen soruları hatırla: aynı kullanıcı (tarayıcı) bir soruyu bir daha görmez ---- */
+const SEEN_KEY='zfSeen_v1';
+const SEEN=(function(){try{const a=JSON.parse(localStorage.getItem(SEEN_KEY)||'[]');return new Set(Array.isArray(a)?a:[]);}catch(e){return new Set();}})();
+let lastSeenId=null;
+function seenSave(){try{localStorage.setItem(SEEN_KEY,JSON.stringify(Array.from(SEEN)));}catch(e){}}
+function markSeen(e){ if(!e) return; SEEN.add(e.id); lastSeenId=e.id; seenSave(); }
+function pickFresh(){
+  const free=()=>{const p=[];for(let i=0;i<N;i++) if(!SEEN.has(DB[i].id)) p.push(i);return p;};
+  let pool=free();
+  if(!pool.length){            // tüm havuz bitti: sıfırla (son görülen hariç, art arda tekrar olmasın)
+    SEEN.clear(); if(lastSeenId) SEEN.add(lastSeenId); seenSave();
+    pool=free();
+  }
+  return pool[Math.floor(Math.random()*pool.length)];
+}
 
 /* ================= SES (Web Audio API) ================= */
 const Snd=(function(){
@@ -509,11 +766,16 @@ function innerB(idx){
   const e=DB[mod(idx)];
   const L=e.s.length, cls=L<=34?'s1':(L<=46?'s2':'s3');
   const hl=revealed&&mod(idx)===resIdx;
-  return {key:idx+'|'+(hl?1:0),cls:'item '+cls,html:hl?e.s.replace(e.hl,'<span class="hl">'+e.hl+'</span>'):e.s};
+  return {key:idx+'|'+(hl?1:0)+'|'+e.id,cls:'item '+cls,html:hl?e.s.replace(e.hl,'<span class="hl">'+e.hl+'</span>'):e.s};
 }
 const RA=mkReel('reelA',NR,innerA,1.6), RB=mkReel('reelB',N,innerB,2.2);
 RA.pick=()=>{const t=Math.round(RA.pos+7);return t+modn(RA.tgt-t,NR);};
-RB.pick=()=>{let d=11,t=Math.round(RB.pos+d);while(mod(t)===RB.prev){d++;t=Math.round(RB.pos+d);}return t;};
+RB.pick=()=>{
+  /* durak yine ~11 adım ilerde; o duraktaki soruyu, kullanıcının görmediği bir soruyla yer değiştiriyoruz */
+  const t=Math.round(RB.pos+11), cur=mod(t), want=pickFresh();
+  if(cur!==want){ const tmp=DB[cur]; DB[cur]=DB[want]; DB[want]=tmp; }
+  return t;
+};
 RA.onStop=()=>{ tier=TIERS[modn(Math.round(RA.pos),NR)]; Snd.thunk(); };
 RB.onStop=()=>onStopped();
 
@@ -585,12 +847,12 @@ function grp(k){
   if(/-m[ae]z/.test(k)) return 'hemen';
   if(k.indexOf('…')>=0) return 'tekrar';
   if(/ken/.test(k)) return 'es';
-  if(/d[ıu]kça/.test(k)) return 'tzaman';
-  if(/-(eli|yalı)/.test(k)) return 'beri';
-  if(/ince/.test(k)) return 'an';
-  if(/arcasına/.test(k)) return 'benzet';
-  if(/-y?[ıi]p$/.test(k)) return 'bag';
-  if(/m[ae]d[ae]n|maksızın/.test(k)) return 'olumsuz';
+  if(/d[ıiuü]k[çc][ae]/.test(k)) return 'tzaman';
+  if(/[ae]l[ıi]$/.test(k)) return 'beri';
+  if(/c[ae]s[ıi]n[ae]/.test(k)) return 'benzet';
+  if(/[ıiuü]n[cç][ae]$/.test(k)) return 'an';
+  if(/-y?[ıiuü]p$/.test(k)) return 'bag';
+  if(/m[ae]d[ae]n|m[ae]k[sş][ıi]z[ıi]n/.test(k)) return 'olumsuz';
   return 'bicim';
 }
 const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
@@ -885,7 +1147,7 @@ function startSpin(){
 function onStopped(){
   Snd.whirrStop(); Snd.thunk();
   if(!tier) tier=TIERS[modn(Math.round(RA.pos),NR)];
-  resIdx=mod(Math.round(RB.pos)); RB.prev=resIdx;
+  resIdx=mod(Math.round(RB.pos)); RB.prev=resIdx; markSeen(DB[resIdx]);
   setTimeout(()=>Snd.ding(),180);
   winFX(6); startQuiz(); startTimer();
   busy=false; hud(); ui();
