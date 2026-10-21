@@ -14,7 +14,7 @@ html,body{overscroll-behavior:none;touch-action:manipulation;-webkit-text-size-a
 @media (max-width:900px),(max-height:480px){#score{transform:scale(.55);transform-origin:0 0;left:6px;top:6px}.tb{transform:scale(.8);transform-origin:100% 0}}
 @media (max-height:480px){#hud{bottom:4px}.btn{font-size:10px;padding:7px 10px}.box{padding:14px 16px}}
 </style></head><body>
-<title>Zarf-Fiil Slot Yarışı</title>
+<title>Fiilimsi Slot Yarışı</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
@@ -30,6 +30,9 @@ html,body{height:100%;background:#05030c;overflow:hidden;font-family:'VT323','Co
 #pan{position:absolute;left:0;top:0;width:1600px;height:900px;transform-origin:0 0;transition:transform 2.2s cubic-bezier(.45,0,.2,1)}
 #world{position:absolute;inset:0}
 #bg{position:absolute;left:-400px;top:-200px;width:2400px;height:1302px;image-rendering:pixelated}
+/* ---------- ARKA PLAN HAREKETİ ---------- */
+#bgfx{position:absolute;left:-400px;top:-200px;width:2400px;height:1302px;image-rendering:pixelated;pointer-events:none}
+
 #shade{position:absolute;inset:0;pointer-events:none;z-index:30;
   background:radial-gradient(ellipse at center,transparent 52%,rgba(0,0,0,.6) 100%),
   repeating-linear-gradient(0deg,rgba(0,0,0,.13) 0 2px,transparent 2px 4px)}
@@ -38,7 +41,7 @@ html,body{height:100%;background:#05030c;overflow:hidden;font-family:'VT323','Co
 #boardtxt{position:absolute;left:150px;top:96px;width:460px;color:#f3f3e4;transform:rotate(-1deg);text-shadow:0 0 6px rgba(255,255,255,.35);opacity:.92}
 #boardtxt h2{font:400 30px 'Press Start 2P',monospace;margin-bottom:16px;color:#fff7c2}
 #boardtxt p{font-size:29px;line-height:1.15}
-#boardtxt .d{color:#ffc27a}#boardtxt .z{color:#8fe8ff}
+#boardtxt .d{color:#ffc27a}#boardtxt .s{color:#d5b6ff}#boardtxt .z{color:#8fe8ff}
 
 /* ---------- ÖĞRENCİ ---------- */
 #mshadow{position:absolute;left:560px;top:846px;width:700px;height:60px;background:radial-gradient(ellipse at center,rgba(0,0,0,.6),transparent 70%)}
@@ -98,17 +101,18 @@ html,body{height:100%;background:#05030c;overflow:hidden;font-family:'VT323','Co
 .p-msg{font-size:31px;line-height:1.1;text-align:center;margin-top:34px;color:#9effc6}
 .blink{animation:bk 1s steps(2) infinite}@keyframes bk{50%{opacity:.25}}
 .badge{font:400 14px 'Press Start 2P',monospace;padding:6px 8px;text-align:center;margin-bottom:6px;border:3px solid currentColor;text-shadow:none}
-.badge.ok{color:#9effc6;background:rgba(60,255,150,.14)}.badge.bad{color:#ff8a9a;background:rgba(255,60,80,.16)}.badge.Durum{color:#ffb347;background:rgba(255,160,40,.14)}.badge.Zaman{color:#5fe3ff;background:rgba(60,200,255,.14)}
+.badge.ok{color:#9effc6;background:rgba(60,255,150,.14)}.badge.bad{color:#ff8a9a;background:rgba(255,60,80,.16)}.badge.Durum{color:#ffb347;background:rgba(255,160,40,.14)}.badge.Zaman{color:#5fe3ff;background:rgba(60,200,255,.14)}.badge.Isim{color:#ff8fd0;background:rgba(255,80,170,.14)}.badge.Sifat{color:#d5b6ff;background:rgba(160,110,255,.16)}
 .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;line-height:1.02;font-size:26px;border-bottom:2px dotted rgba(158,240,255,.25);padding:2px 0}
 .row span{color:#7ea0b8;font-size:22px;white-space:nowrap}.row b{color:#fff;font-weight:400;text-align:right}
 .row em{color:#ffcc33;font-style:normal}.row i{color:#7ea0b8;font-style:normal}
 .note{font-size:21px;color:#8fdcb0;margin-top:6px;line-height:1}
 #deck{position:absolute;left:28px;top:576px;width:504px;height:104px;background:linear-gradient(#1a0b33,#0e0620);box-shadow:0 0 0 4px #0b0b14,0 0 0 7px #7a4f00}
-.lamp{position:absolute;top:14px;width:136px;height:46px;border:4px solid #0b0b14;font:400 11px 'Press Start 2P',monospace;display:flex;align-items:center;justify-content:center;color:#6b5f78;background:#2a2230;transition:all .2s}
-.lamp.d{left:14px}.lamp.z{left:162px}
+.lamp{position:absolute;top:14px;width:100px;height:46px;border:4px solid #0b0b14;font:400 9px 'Press Start 2P',monospace;display:flex;align-items:center;justify-content:center;color:#6b5f78;background:#2a2230;transition:all .2s}
+.lamp.d{left:14px}.lamp.s{left:122px}.lamp.z{left:230px}
 .lamp.d.on{background:#ffb347;color:#3a1d00;box-shadow:0 0 28px #ff9d00}
+.lamp.s.on{background:#c9a0ff;color:#26004d;box-shadow:0 0 28px #a060ff}
 .lamp.z.on{background:#5fe3ff;color:#00323d;box-shadow:0 0 28px #00c8ff}
-.slot{position:absolute;left:326px;top:16px;width:70px;height:42px;background:#05030a;box-shadow:0 0 0 4px #ffcc33,0 0 0 8px #0b0b14;color:#ffcc33;font:400 9px 'Press Start 2P',monospace;display:flex;align-items:center;justify-content:center}
+.slot{position:absolute;left:348px;top:16px;width:70px;height:42px;background:#05030a;box-shadow:0 0 0 4px #ffcc33,0 0 0 8px #0b0b14;color:#ffcc33;font:400 9px 'Press Start 2P',monospace;display:flex;align-items:center;justify-content:center}
 .dot{position:absolute;top:66px;width:24px;height:24px;border-radius:50%;box-shadow:0 0 0 3px #0b0b14}
 .dot.a{left:30px;background:radial-gradient(circle at 35% 30%,#ff9aa8,#d4122c)}.dot.b{left:70px;background:radial-gradient(circle at 35% 30%,#a8ffc0,#10a040)}.dot.c{left:110px;background:radial-gradient(circle at 35% 30%,#a8d8ff,#1050d0)}
 .led{position:absolute;left:170px;top:68px;width:230px;height:20px;background:#050a05;box-shadow:0 0 0 3px #0b0b14;color:#6eff8a;font:400 18px 'VT323',monospace;text-align:center;line-height:20px}
@@ -154,6 +158,8 @@ html,body{height:100%;background:#05030c;overflow:hidden;font-family:'VT323','Co
 .tw{display:flex;gap:12px}.tw .chip{flex:1;font-size:32px;line-height:46px}
 .tw .chip.d{background:linear-gradient(#ffd08a,#ff9d00 60%,#b86a00)}
 .tw .chip.z{background:linear-gradient(#b8f0ff,#2cc8ff 60%,#0a7aa0)}
+.tw .chip.s{background:linear-gradient(#e6d2ff,#a060ff 60%,#5a22b0);color:#1d0040}
+.tw.t3 .chip{font-size:24px;padding:0 4px}
 .opts{display:flex;flex-direction:column;gap:6px}
 .opts .chip{text-align:left;font-size:24px;line-height:34px;width:100%}
 
@@ -227,9 +233,10 @@ html,body{height:100%;background:#05030c;overflow:hidden;font-family:'VT323','Co
 <div id="viewport">
   <div id="persp"><div id="cam"><div id="pan"><div id="world">
     <canvas id="bg" width="400" height="217"></canvas>
+    <canvas id="bgfx" width="800" height="434"></canvas>
     <div id="boardtxt">
-      <h2>ZARF-FİİLLER</h2>
-      <p>Fiil + zarf-fiil eki<br><span class="d">Durum:</span> -arak -ıp -madan -a…-a<br><span class="z">Zaman:</span> -ınca -ken -dıkça -eli</p>
+      <h2>FİİLİMSİLER</h2>
+      <p>Fiil + ek = fiilimsi<br><span class="d">İsim:</span> -mek -ma -ış<br><span class="s">Sıfat:</span> -an -dık -ecek -mış<br><span class="z">Zarf:</span> -arak -ıp -ınca -ken</p>
     </div>
     <div id="team">
       <div class="ttl">AHTAPOT &amp; APOLLON</div>
@@ -241,7 +248,7 @@ html,body{height:100%;background:#05030c;overflow:hidden;font-family:'VT323','Co
     <div id="student"></div>
 
     <div id="machine">
-      <div class="marquee"><h1>ZARF-FİİL</h1><p>★ SLOT MAKİNESİ ★</p></div>
+      <div class="marquee"><h1>FİİLİMSİ</h1><p>★ SLOT MAKİNESİ ★</p></div>
       <div id="frame">
         <div id="reels">
           <div class="rwin a"><div class="reel" id="reelA"></div><div class="glass"></div><div class="arrow l"></div></div>
@@ -250,8 +257,9 @@ html,body{height:100%;background:#05030c;overflow:hidden;font-family:'VT323','Co
       </div>
       <div id="panel"></div>
       <div id="deck">
-        <div class="lamp d" id="lampD">DURUM</div>
-        <div class="lamp z" id="lampZ">ZAMAN</div>
+        <div class="lamp d" id="lampI">İSİM</div>
+        <div class="lamp s" id="lampS">SIFAT</div>
+        <div class="lamp z" id="lampZ">ZARF</div>
         <div class="slot">COIN</div>
         <div class="dot a"></div><div class="dot b"></div><div class="dot c"></div>
         <div class="led">★ SNŞAL ★</div>
@@ -275,8 +283,8 @@ html,body{height:100%;background:#05030c;overflow:hidden;font-family:'VT323','Co
 <button class="tb" id="mkBtn" title="Market">🛒</button>
 <button class="tb" id="mute" title="Ses aç/kapat">🔊</button>
 <div class="ov" id="menuOv"><div class="box">
-  <h2>ZARF-FİİL<br>SLOT YARIŞI</h2>
-  <p>Kolu çek: ödül ve cümle belirlensin. Süre dolmadan zarf-fiili bul, türünü ve anlamını seç, coinleri topla!</p>
+  <h2>FİİLİMSİ<br>SLOT YARIŞI</h2>
+  <p>Kolu çek: ödül ve cümle belirlensin. Süre dolmadan cümledeki fiilimsiyi bul, türünü ve anlamını seç, coinleri topla!</p>
   <div id="cloudSt"></div>
   <div id="who"></div>
   <p class="small">Doğru cevap = coin · hızlı bitirirsen bonus · her yanlış cevap coinden düşürür</p>
@@ -567,6 +575,165 @@ const DB0=[
  {s:"Kuşlar yuvadan çıkar çıkmaz ötmeye başladı.",hl:"çıkar çıkmaz",kok:"çık-",ek:"-ar … -maz",tur:"Zaman",soru:"Kuşlar ne zaman ötmeye başladı?",not:"-ar … -maz: eylemin hemen ardından olanı bildirir."},
  {s:"Sınav başlar başlamaz sessizlik oldu.",hl:"başlar başlamaz",kok:"başla-",ek:"-r … -maz",tur:"Zaman",soru:"Ne zaman sessizlik oldu?",not:"-r … -maz: eylemin hemen ardından olanı bildirir."}
 ];
+
+/* ===== FİİLİMSİ GENİŞLETMESİ: isim-fiil + sıfat-fiil cümleleri (zarf-fiil havuzu yukarıda) ===== */
+const FAMOF={imek:'İsim-fiil',ima:'İsim-fiil',iis:'İsim-fiil',san:'Sıfat-fiil',smez:'Sıfat-fiil',sdik:'Sıfat-fiil',secek:'Sıfat-fiil',smis:'Sıfat-fiil',sar:'Sıfat-fiil'};
+const NOTE={
+ imek:'-mek/-mak: fiilin adı gibi kullanılır; isim gibi çekimlenebilir.',
+ ima:'-ma/-me: işi ya da oluşu adlandıran isim-fiildir.',
+ iis:'-ış/-iş/-uş/-üş: işin yapılış biçimini adlandıran isim-fiildir.',
+ san:'-an/-en: eylemi yapanı niteler; ismin önünde sıfat olur.',
+ smez:'-maz/-mez: yapılmayan ya da yapılamayan işi niteler.',
+ sdik:'-dık/-dik: yapılmış işi niteler; çoğu zaman iyelik eki alır.',
+ secek:'-ecek/-acak: yapılacak işi niteler.',
+ smis:'-mış/-miş/-muş/-müş: olup bitmiş işi niteler.',
+ sar:'-ar/-er/-ır: sürekliliği ya da özelliği niteler.'
+};
+function addVerbals(g,list){ list.forEach(a=>DB0.push({s:a[0],hl:a[1],kok:a[2],ek:a[3],g:g,fam:FAMOF[g],tur:FAMOF[g],soru:'',not:NOTE[g]})); }
+addVerbals('imek',[
+ ["Okumak insanı geliştirir.","Okumak","oku-","-mak"],
+ ["Sabah erken kalkmak zor gelir.","kalkmak","kalk-","-mak"],
+ ["Yüzmek benim en sevdiğim spordur.","Yüzmek","yüz-","-mek"],
+ ["Çocuklar bahçede oynamak istedi.","oynamak","oyna-","-mak"],
+ ["Yalan söylemek kötü bir davranıştır.","söylemek","söyle-","-mek"],
+ ["Arkadaşlarıma yardım etmek beni mutlu eder.","etmek","et-","-mek"],
+ ["Her gün yürümek sağlığa iyi gelir.","yürümek","yürü-","-mek"],
+ ["Ahmet resim yapmak istiyor.","yapmak","yap-","-mak"],
+ ["Dürüst olmak en büyük erdemdir.","olmak","ol-","-mak"],
+ ["Başarmak için çok çalışmalısın.","Başarmak","başar-","-mak"],
+ ["Müzik dinlemek beni rahatlatır.","dinlemek","dinle-","-mek"],
+ ["Kitap yazmak büyük emek ister.","yazmak","yaz-","-mak"],
+ ["Bisiklete binmek sağlıklı bir etkinliktir.","binmek","bin-","-mek"],
+ ["Koşmak vücudu dinç tutar.","Koşmak","koş-","-mak"],
+ ["Anneme sarılmak içimi ısıtır.","sarılmak","sarıl-","-mak"],
+ ["Gülmek en güzel ilaçtır.","Gülmek","gül-","-mek"]
+]);
+addVerbals('ima',[
+ ["Bu sınıfta konuşma yasaktır.","konuşma","konuş-","-ma"],
+ ["Yazma becerisi okulda gelişir.","Yazma","yaz-","-ma"],
+ ["Yüzme dersine bugün başladım.","Yüzme","yüz-","-me"],
+ ["Dinleme becerisi derslerde çok işe yarar.","Dinleme","dinle-","-me"],
+ ["Çocuk uyuma saatini geçirdi.","uyuma","uyu-","-ma"],
+ ["Yardım etme isteği çok değerlidir.","etme","et-","-me"],
+ ["Kapıyı çarpma sesi hepimizi korkuttu.","çarpma","çarp-","-ma"],
+ ["Bu kitabı okuma isteğim yok.","okuma","oku-","-ma"],
+ ["Öğrenme yolculuğu hiç bitmez.","Öğrenme","öğren-","-me"],
+ ["Yeni bir şey deneme cesareti göstermeli.","deneme","dene-","-me"],
+ ["Resim yapma dersi herkesin hoşuna gitti.","yapma","yap-","-ma"],
+ ["Uçma hayalini hiç bırakmadı.","Uçma","uç-","-ma"],
+ ["Seni görme isteği içimi yaktı.","görme","gör-","-me"],
+ ["Ders çalışma saatimiz akşam yedide.","çalışma","çalış-","-ma"]
+]);
+addVerbals('iis',[
+ ["Kızın gülüşü herkesi mutlu etti.","gülüşü","gül-","-üş"],
+ ["Bu yürüyüş çok yorucuydu.","yürüyüş","yürü-","-yüş"],
+ ["Hocanın bakışı bizi susturdu.","bakışı","bak-","-ış"],
+ ["Treni kaçırışına çok üzüldü.","kaçırışına","kaçır-","-ış"],
+ ["Çocukların koşuşu bahçeyi neşelendirdi.","koşuşu","koş-","-uş"],
+ ["Ayşe'nin şiir okuyuşu çok etkileyiciydi.","okuyuşu","oku-","-yuş"],
+ ["Misafirlerin geliş saati belli değil.","geliş","gel-","-iş"],
+ ["Okula gidiş yolu ağaçlıktır.","gidiş","git- (gid-)","-iş"],
+ ["Güneşin doğuşunu hep birlikte izledik.","doğuşunu","doğ-","-uş"],
+ ["Kuşların uçuşu gökyüzünü süsledi.","uçuşu","uç-","-uş"],
+ ["Bu şarkıyı söyleyişi çok güzeldi.","söyleyişi","söyle-","-yiş"],
+ ["Dedemin oturuşu hep dik ve ağırbaşlıdır.","oturuşu","otur-","-uş"],
+ ["Okuldan çıkış zili çaldı.","çıkış","çık-","-ış"],
+ ["Kardeşimin yazışı çok düzgündür.","yazışı","yaz-","-ış"]
+]);
+addVerbals('san',[
+ ["Koşan çocuk yarışı kazandı.","Koşan","koş-","-an"],
+ ["Bahçede oynayan çocuklar çok neşeliydi.","oynayan","oyna-","-yan"],
+ ["Ders anlatan öğretmen herkesi dinletti.","anlatan","anlat-","-an"],
+ ["Kapıyı açan kişi içeri girdi.","açan","aç-","-an"],
+ ["Gülen yüzler insana iyi gelir.","Gülen","gül-","-en"],
+ ["Akşam esen rüzgâr havayı serinletti.","esen","es-","-en"],
+ ["Uyuyan bebeği uyandırma.","Uyuyan","uyu-","-yan"],
+ ["Pencereden bakan kız el salladı.","bakan","bak-","-an"],
+ ["Şarkı söyleyen kuşlar bahçeye kondu.","söyleyen","söyle-","-yen"],
+ ["Dönen tekerlek aniden durdu.","Dönen","dön-","-en"],
+ ["Kitap okuyan öğrenciler sessizce oturdu.","okuyan","oku-","-yan"],
+ ["Çalışan öğrenci başarıya ulaşır.","Çalışan","çalış-","-an"],
+ ["Yağan yağmur toprağı ıslattı.","Yağan","yağ-","-an"],
+ ["Beni bekleyen arkadaşım gelmedi.","bekleyen","bekle-","-yen"],
+ ["Parlayan yıldızlar gökyüzünü süsledi.","Parlayan","parla-","-yan"]
+]);
+addVerbals('smez',[
+ ["Sönmez bir ateş yaktılar.","Sönmez","sön-","-mez"],
+ ["Tükenmez kalemle yazı yazdım.","Tükenmez","tüken-","-mez"],
+ ["Kırılmaz cam çocuklar için güvenlidir.","Kırılmaz","kırıl-","-maz"],
+ ["Solmaz çiçekler vazoyu süsledi.","Solmaz","sol-","-maz"],
+ ["Dinmez yağmur bütün gün sürdü.","Dinmez","din-","-mez"],
+ ["Bitmez dertlerden hep yakındı.","Bitmez","bit-","-mez"],
+ ["Yıkılmaz kaleler gibi dimdik durdu.","Yıkılmaz","yıkıl-","-maz"],
+ ["Unutulmaz bir yaz geçirdik.","Unutulmaz","unutul-","-maz"],
+ ["Yenilmez bir takımla karşılaştık.","Yenilmez","yenil-","-mez"],
+ ["Bozulmaz bir dostlukları vardı.","Bozulmaz","bozul-","-maz"],
+ ["Anlatılmaz bir güzellik vardı manzarada.","Anlatılmaz","anlatıl-","-maz"],
+ ["İnanılmaz bir gol attı.","İnanılmaz","inanıl-","-maz"],
+ ["Silinmez izler bıraktı.","Silinmez","silin-","-mez"]
+]);
+addVerbals('sdik',[
+ ["Okuduğum kitap çok güzeldi.","Okuduğum","oku-","-duğ (-dık)"],
+ ["Yazdığım mektup bugün postaya verildi.","Yazdığım","yaz-","-dığ (-dık)"],
+ ["Sevdiği şarkıyı yine açtı.","Sevdiği","sev-","-diğ (-dik)"],
+ ["Annemin yaptığı yemekler çok lezzetli.","yaptığı","yap-","-tığ (-dık)"],
+ ["Gördüğüm rüya bir türlü aklımdan çıkmadı.","Gördüğüm","gör-","-düğ (-dik)"],
+ ["Aldığın hediye için teşekkürler.","Aldığın","al-","-dığ (-dık)"],
+ ["Duyduğumuz haber hepimizi sevindirdi.","Duyduğumuz","duy-","-duğ (-dık)"],
+ ["Dün izlediğim film çok eğlenceliydi.","izlediğim","izle-","-diğ (-dik)"],
+ ["Öğretmenin anlattığı konu çok kolaydı.","anlattığı","anlat-","-tığ (-dık)"],
+ ["Çizdiğin resim sergiye gönderildi.","Çizdiğin","çiz-","-diğ (-dik)"],
+ ["Bulduğumuz anahtar kapıyı açtı.","Bulduğumuz","bul-","-duğ (-dık)"],
+ ["Babamın sürdüğü araba çok eskiydi.","sürdüğü","sür-","-düğ (-dik)"],
+ ["Beklediğim misafir sonunda geldi.","Beklediğim","bekle-","-diğ (-dik)"],
+ ["Okuldan getirdiği kitabı masaya koydu.","getirdiği","getir-","-diğ (-dik)"]
+]);
+addVerbals('secek',[
+ ["Gelecek hafta sınav olacağız.","Gelecek","gel-","-ecek"],
+ ["Okuyacak kitaplarını çantasına koydu.","Okuyacak","oku-","-yacak"],
+ ["Yarın gidecek yolcular erkenden kalktı.","gidecek","git- (gid-)","-ecek"],
+ ["Yenilecek meyveleri yıkadım.","Yenilecek","yenil-","-ecek"],
+ ["Yapacak çok işimiz var.","Yapacak","yap-","-acak"],
+ ["Söyleyecek sözü kalmadı.","Söyleyecek","söyle-","-yecek"],
+ ["Yazacak kalemim yok.","Yazacak","yaz-","-acak"],
+ ["Okunacak çok kitabımız var.","Okunacak","okun-","-acak"],
+ ["Dinleyecek müzikler seçtim.","Dinleyecek","dinle-","-yecek"],
+ ["Yarın çıkacak otobüse yetişmeliyiz.","çıkacak","çık-","-acak"],
+ ["Çözülecek sorular tahtaya yazıldı.","Çözülecek","çözül-","-ecek"],
+ ["Gösterilecek film sinemada başlıyor.","Gösterilecek","gösteril-","-ecek"],
+ ["Bizi bekleyecek arkadaşlar kapıda.","bekleyecek","bekle-","-yecek"]
+]);
+addVerbals('smis',[
+ ["Solmuş çiçekleri vazodan çıkardı.","Solmuş","sol-","-muş"],
+ ["Yorulmuş yolcular bankta dinlendi.","Yorulmuş","yorul-","-muş"],
+ ["Kırılmış cam parçalarını topladık.","Kırılmış","kırıl-","-mış"],
+ ["Unutulmuş eski bir şarkıyı mırıldandı.","Unutulmuş","unutul-","-muş"],
+ ["Dökülmüş sütü sildi.","Dökülmüş","dökül-","-müş"],
+ ["Yıkanmış çamaşırlar bahçede kuruyordu.","Yıkanmış","yıkan-","-mış"],
+ ["Pişmiş yemek hemen servis edildi.","Pişmiş","piş-","-miş"],
+ ["Kurumuş yapraklar yere dökülüyordu.","Kurumuş","kuru-","-muş"],
+ ["Eskimiş ayakkabılarını değiştirdi.","Eskimiş","eski-","-miş"],
+ ["Donmuş göl üzerinde kaydılar.","Donmuş","don-","-muş"],
+ ["Yanmış odunlar sobanın yanında duruyordu.","Yanmış","yan-","-mış"],
+ ["Açılmış kapıdan içeri baktı.","Açılmış","açıl-","-mış"],
+ ["Boyanmış duvar çok güzel görünüyor.","Boyanmış","boyan-","-mış"]
+]);
+addVerbals('sar',[
+ ["Akar su yolunu bulur.","Akar","ak-","-ar"],
+ ["Yanar dağ turistleri çok etkiledi.","Yanar","yan-","-ar"],
+ ["Çıkar yol bulamadık.","Çıkar","çık-","-ar"],
+ ["Döner kapıdan içeri girdi.","Döner","dön-","-er"],
+ ["Çalar saat yedide öttü.","Çalar","çal-","-ar"],
+ ["Kayar merdiven çocukların çok hoşuna gitti.","Kayar","kay-","-ar"],
+ ["Uçar halı masalda geçer.","Uçar","uç-","-ar"]
+]);
+/* eski zarf-fiil sorularına tür bilgisi ver (ve -dıkça/-tıkça hatalı Durum etiketlerini düzelt) */
+DB0.forEach(e=>{
+  if(e.fam) return;
+  if(/t[ıiuü]k[çc][ae]/.test(e.ek)){ e.tur='Zaman'; e.not='-dıkça/-tıkça: tekrarlanan eylemde zaman bildirir.'; }
+  e.fam='Zarf-fiil'; e.g=grp(e.ek);
+});
+function lampsOff(){ ['lampI','lampS','lampZ'].forEach(i=>$(i).classList.remove('on')); }
 DB0.forEach(e=>{ if(e.s.indexOf(e.hl)<0) console.warn('Vurgu bulunamadı:',e.s); });
 /* Her soruya cümlesinden türetilen kalıcı bir kimlik verilir (havuz sırası değişse de bozulmaz) */
 function qHash(s){let h=5381;for(let i=0;i<s.length;i++){h=((h<<5)+h+s.charCodeAt(i))|0;}return (h>>>0).toString(36);}
@@ -581,13 +748,16 @@ const SEEN=(function(){try{const a=JSON.parse(localStorage.getItem(SEEN_KEY)||'[
 let lastSeenId=null;
 function seenSave(){try{localStorage.setItem(SEEN_KEY,JSON.stringify(Array.from(SEEN)));}catch(e){}}
 function markSeen(e){ if(!e) return; SEEN.add(e.id); lastSeenId=e.id; seenSave(); }
+const FAMS=['İsim-fiil','Sıfat-fiil','Zarf-fiil'];
 function pickFresh(){
-  const free=()=>{const p=[];for(let i=0;i<N;i++) if(!SEEN.has(DB[i].id)) p.push(i);return p;};
-  let pool=free();
-  if(!pool.length){            // tüm havuz bitti: sıfırla (son görülen hariç, art arda tekrar olmasın)
+  /* önce fiilimsi türü eşit olasılıkla rastgele seçilir, sonra o türden görülmemiş bir soru gelir */
+  const free=()=>{const by={};FAMS.forEach(f=>by[f]=[]);for(let i=0;i<N;i++) if(!SEEN.has(DB[i].id)) by[DB[i].fam].push(i);return by;};
+  let by=free(), fl=FAMS.filter(f=>by[f].length);
+  if(!fl.length){
     SEEN.clear(); if(lastSeenId) SEEN.add(lastSeenId); seenSave();
-    pool=free();
+    by=free(); fl=FAMS.filter(f=>by[f].length);
   }
+  const pool=by[fl[Math.floor(Math.random()*fl.length)]];
   return pool[Math.floor(Math.random()*pool.length)];
 }
 
@@ -703,6 +873,64 @@ const Snd=(function(){
   R(10,760,56,70,'#a8502a'); R(2,752,72,14,'#c4643a'); R(20,690,12,70,'#2f8a3a'); R(36,670,12,90,'#3fae4a'); R(50,700,12,60,'#2f8a3a');
 })();
 
+
+/* ================= ARKA PLAN HAREKETLİLİĞİ ================= */
+(function bgMotion(){
+  const cv=$('bgfx'), g=cv.getContext('2d'), K=800/2400;
+  const rnd=(a,b)=>a+Math.random()*(b-a);
+  // pencere yıldızları
+  const stars=[[1350,120],[1400,150],[1500,200],[1360,250],[1450,280],[1510,330],[1390,350],[1340,180],[1520,130],[1380,300],[1480,250],[1420,110]]
+    .map(p=>({x:p[0],y:p[1],ph:rnd(0,6.28),sp:rnd(1.2,3.2),sz:Math.random()<.3?8:6}));
+  // lamba ışığında uçuşan toz
+  const dust=[]; for(let i=0;i<46;i++) dust.push({x:rnd(200,1400),y:rnd(50,640),vx:rnd(-6,6),vy:rnd(3,12),ph:rnd(0,6.28),sz:Math.random()<.25?6:4});
+  // kayan yıldız, bulut
+  let shoot=null, nextShoot=2+Math.random()*4, cloudX=1250;
+  // tebeşir tozu (tahta altı)
+  const chalk=[]; for(let i=0;i<14;i++) chalk.push({x:rnd(160,1240),y:rnd(580,640),vy:rnd(6,16),ph:rnd(0,6.28)});
+  let t0=performance.now(), lastT=t0;
+  function draw(now){
+    const dt=Math.min(.05,(now-lastT)/1000); lastT=now; const t=(now-t0)/1000;
+    g.setTransform(1,0,0,1,0,0); g.clearRect(0,0,800,434);
+    g.setTransform(K,0,0,K,400*K,200*K);
+    // lamba ışık huzmesi (yumuşak nabız) ve ara sıra titreme
+    [[200,520],[880,520]].forEach((L,i)=>{
+      const fl=(Math.sin(t*(2.1+i*.7))*.5+.5)*.05+((Math.sin(t*(23+i*5))>.985)?-.12:0);
+      g.fillStyle='rgba(255,233,168,'+Math.max(0,.07+fl)+')';
+      g.beginPath(); g.moveTo(L[0]+20,36); g.lineTo(L[0]+L[1]-20,36); g.lineTo(L[0]+L[1]+90,600); g.lineTo(L[0]-90,600); g.closePath(); g.fill();
+      if(Math.sin(t*(23+i*5))>.985){ g.fillStyle='rgba(20,26,42,.45)'; g.fillRect(L[0],6,L[1],24); }
+    });
+    // pencere: bulut, yıldızlar, ay parıltısı, kayan yıldız
+    g.save(); g.beginPath(); g.rect(1326,96,208,338); g.clip();
+    const glow=.22+Math.sin(t*.9)*.08;
+    const rg=g.createRadialGradient(1488,148,6,1488,148,120); rg.addColorStop(0,'rgba(255,242,176,'+glow+')'); rg.addColorStop(1,'rgba(255,242,176,0)');
+    g.fillStyle=rg; g.fillRect(1326,96,208,338);
+    stars.forEach(s=>{ const a=.25+.75*(Math.sin(t*s.sp+s.ph)*.5+.5); g.fillStyle='rgba(255,246,200,'+a.toFixed(2)+')'; g.fillRect(s.x,s.y,s.sz,s.sz); });
+    cloudX-=dt*14; if(cloudX<1180) cloudX=1580;
+    g.fillStyle='rgba(40,52,110,.55)';
+    g.fillRect(cloudX,170,90,18); g.fillRect(cloudX+18,152,54,18); g.fillRect(cloudX+60,188,70,12);
+    nextShoot-=dt; if(!shoot&&nextShoot<=0){ shoot={x:rnd(1450,1530),y:rnd(110,170),life:0}; nextShoot=rnd(5,10); }
+    if(shoot){ shoot.life+=dt; shoot.x-=dt*240; shoot.y+=dt*130;
+      for(let k=0;k<7;k++){ g.fillStyle='rgba(255,255,230,'+(.8-k*.11)+')'; g.fillRect(shoot.x+k*12,shoot.y-k*6.5,8,6); }
+      if(shoot.life>.9||shoot.x<1326) shoot=null; }
+    g.restore();
+    // pencere çerçevesini koru (bulut/ışık kenara taşmasın)
+    // toz zerrecikleri
+    dust.forEach(d=>{
+      d.x+=(d.vx+Math.sin(t*.7+d.ph)*5)*dt; d.y+=d.vy*dt;
+      if(d.y>660){d.y=50;d.x=rnd(200,1400);} if(d.x<190)d.x=1410; if(d.x>1410)d.x=190;
+      const a=.12+.38*(Math.sin(t*1.6+d.ph)*.5+.5);
+      g.fillStyle='rgba(255,244,205,'+a.toFixed(2)+')'; g.fillRect(d.x,d.y,d.sz,d.sz);
+    });
+    chalk.forEach(c=>{ c.y+=c.vy*dt; if(c.y>700){c.y=rnd(580,600);c.x=rnd(160,1240);} g.fillStyle='rgba(240,240,235,'+(.15+.25*(Math.sin(t*2+c.ph)*.5+.5)).toFixed(2)+')'; g.fillRect(c.x,c.y,4,4); });
+    // saat: saniye kolu (adım adım)
+    const sec=Math.floor((Date.now()/1000)%60), ang=sec/60*Math.PI*2-Math.PI/2;
+    g.strokeStyle='#d62828'; g.lineWidth=4; g.beginPath(); g.moveTo(1416,42); g.lineTo(1416+Math.cos(ang)*22,42+Math.sin(ang)*22); g.stroke();
+    g.fillStyle='#d62828'; g.fillRect(1412,38,8,8);
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+})();
+
 /* ================= ÖĞRENCİ (SVG PİKSEL FİGÜR · market ürünleri giydirilebilir) ================= */
 function studentShapes(eq){
   const O='#0b0b14',SK='#f1be94',SK2='#d99b72',HAIR='#3a2315',JER=(eq&&eq.f&&IT[eq.f])?IT[eq.f].c:'#1a2c7a',NAVY='#ffffff',PANT='#16161f';
@@ -715,9 +943,15 @@ function studentShapes(eq){
   // şort
   add(16,66,33,12,PANT); add(31,72,2,6,'#3a3a4a',false);
   // forma
+  const F=(eq&&eq.f&&IT[eq.f])||null, PAT=F&&F.pat;
   add(14,32,37,34,JER); add(49,32,6,9,JER);
-  add(14,36,3,26,NAVY,false); add(48,36,3,26,NAVY,false); add(14,62,37,3,NAVY,false);
-  add(26,32,13,3,NAVY,false); add(29,35,7,2,NAVY,false);
+  if(PAT==='stripe'){ for(let i=1;i<8;i+=2) add(14+i*4,32,4,34,F.c2,false); }
+  else if(PAT==='half'){ add(33,32,18,34,F.c2,false); add(49,32,6,9,F.c2,false); }
+  else if(F&&F.sp==='lew'){ add(14,62,37,3,'#c8102e',false); add(26,32,13,2,'#c8102e',false); }
+  else{
+    add(14,36,3,26,NAVY,false); add(48,36,3,26,NAVY,false); add(14,62,37,3,NAVY,false);
+    add(26,32,13,3,NAVY,false); add(29,35,7,2,NAVY,false);
+  }
   // boyun, kafa
   add(28,29,8,3,SK2); add(22,10,20,19,SK);
   add(20,17,2,5,SK); add(42,17,2,5,SK);
@@ -735,11 +969,25 @@ function studentShapes(eq){
     A:[" ### ","#   #","#   #","#####","#   #","#   #","#   #"],
     L:["#    ","#    ","#    ","#    ","#    ","#    ","#####"]
   };
-  let ox=18; const oy=42;
-  "SNŞAL".split('').forEach(ch=>{
-    G[ch].forEach((row,ry)=>{ for(let cx=0;cx<5;cx++) if(row[cx]==='#') add(ox+cx,oy+ry,1,1,NAVY,false); });
-    ox+=6;
-  });
+  if(!PAT&&!(F&&F.sp)){
+    let ox=18; const oy=42;
+    "SNŞAL".split('').forEach(ch=>{
+      G[ch].forEach((row,ry)=>{ for(let cx=0;cx<5;cx++) if(row[cx]==='#') add(ox+cx,oy+ry,1,1,NAVY,false); });
+      ox+=6;
+    });
+  }
+  if(F&&F.sp==='lew'){
+    const T={
+      L:["#..","#..","#..","#..","###"],E:["###","#..","##.","#..","###"],W:["#.#","#.#","#.#","###","#.#"],
+      A:[".#.","#.#","###","#.#","#.#"],N:["##.","#.#","#.#","#.#","#.#"],D:["##.","#.#","#.#","#.#","##."],
+      O:["###","#.#","#.#","#.#","###"],S:[".##","#..",".#.","..#","##."],K:["#.#","#.#","##.","#.#","#.#"],I:["###",".#.",".#.",".#.","###"]
+    };
+    const line=(txt,y)=>{ let x=Math.round(32-(txt.length*4-1)/2);
+      txt.split('').forEach(ch=>{ T[ch].forEach((row,ry)=>{ for(let cx=0;cx<3;cx++) if(row[cx]==='#') add(x+cx,y+ry,1,1,'#14213d',false); }); x+=4; }); };
+    line('LEWAN',33); line('DOWSKI',39);
+    [".###.","#...#","#...#","#...#",".####","....#","...#.",".##.."].forEach((row,ry)=>{
+      for(let cx=0;cx<5;cx++) if(row[cx]==='#') add(30+cx,45+ry,1,1,'#c8102e',false); });
+  }
   ['x','g','h'].forEach(k=>{const i=eq&&eq[k]&&IT[eq[k]]; if(i) i.s.forEach(a=>add(a[0],a[1],a[2],a[3],a[4],!!a[5]));});
   return sh;
 }
@@ -852,30 +1100,39 @@ function frame(now){
 /* ================= PANEL ================= */
 const panel=$('panel');
 function setPanel(h){panel.innerHTML=h;}
-function panelIdle(){setPanel('<div class="p-title">ZARF-FİİL ÇÖZÜMLEME</div><div class="p-msg blink">'+(mode?'KOLU ÇEK!<br>ÖDÜL VE CÜMLE ÇIKACAK':'MOD SEÇ!<br>OYUN BAŞLASIN')+'</div>');}
+function panelIdle(){setPanel('<div class="p-title">FİİLİMSİ ÇÖZÜMLEME</div><div class="p-msg blink">'+(mode?'KOLU ÇEK!<br>ÖDÜL VE CÜMLE ÇIKACAK':'MOD SEÇ!<br>OYUN BAŞLASIN')+'</div>');}
 function bad(){wrong++;Snd.wrong();}
 function rw(){return tier?tier.c:0;}
-function panelSpin(){setPanel('<div class="p-title">ZARF-FİİL ÇÖZÜMLEME</div><div class="p-msg blink">ÇARK DÖNÜYOR...</div>');}
+function panelSpin(){setPanel('<div class="p-title">FİİLİMSİ ÇÖZÜMLEME</div><div class="p-msg blink">ÇARK DÖNÜYOR...</div>');}
 /* ===== ÖĞRENCİ KATILIMI: 1) zarf-fiili bul  2) türünü seç  3) anlamı seç ===== */
 let qz=null;
 const norm=w=>w.toLocaleLowerCase('tr').replace(/[.,!?;:]/g,'');
 const MEAN={
- bicim:{t:'Durum',m:'Eylemin nasıl yapıldığını bildirir'},
- tekrar:{t:'Durum',m:'Eylemin tekrarlanarak yapıldığını bildirir'},
- bag:{t:'Durum',m:'İki eylemi birbirine bağlar'},
- olumsuz:{t:'Durum',m:'Eylemin yapılmadan olduğunu bildirir'},
- benzet:{t:'Durum',m:'Benzetme yoluyla durum bildirir'},
- es:{t:'Zaman',m:'İki eylemin aynı anda olduğunu bildirir'},
- tzaman:{t:'Zaman',m:'Tekrarlanan eylemde zaman bildirir'},
- beri:{t:'Zaman',m:'Eylemden bu yana geçen zamanı bildirir'},
- an:{t:'Zaman',m:'Eylemin ne zaman olduğunu bildirir'},
- hemen:{t:'Zaman',m:'Eylemin hemen ardından olanı bildirir'}
+ bicim:{t:'Zarf-fiil',m:'Eylemin nasıl yapıldığını bildirir'},
+ tekrar:{t:'Zarf-fiil',m:'Eylemin tekrarlanarak yapıldığını bildirir'},
+ bag:{t:'Zarf-fiil',m:'İki eylemi birbirine bağlar'},
+ olumsuz:{t:'Zarf-fiil',m:'Eylemin yapılmadan olduğunu bildirir'},
+ benzet:{t:'Zarf-fiil',m:'Benzetme yoluyla durum bildirir'},
+ es:{t:'Zarf-fiil',m:'İki eylemin aynı anda olduğunu bildirir'},
+ tzaman:{t:'Zarf-fiil',m:'Tekrarlanan eylemde zaman bildirir'},
+ beri:{t:'Zarf-fiil',m:'Eylemden bu yana geçen zamanı bildirir'},
+ an:{t:'Zarf-fiil',m:'Eylemin ne zaman olduğunu bildirir'},
+ hemen:{t:'Zarf-fiil',m:'Eylemin hemen ardından olanı bildirir'},
+ imek:{t:'İsim-fiil',m:'Fiilin kendisini isim gibi kullandırır'},
+ ima:{t:'İsim-fiil',m:'İşi ya da oluşu bir isim gibi adlandırır'},
+ iis:{t:'İsim-fiil',m:'İşin yapılış biçimini adlandırır'},
+ san:{t:'Sıfat-fiil',m:'İşi yapan varlığı niteler'},
+ smez:{t:'Sıfat-fiil',m:'Yapılmayan ya da yapılamayan işi niteler'},
+ sdik:{t:'Sıfat-fiil',m:'Yapılmış (geçmiş) işi niteler'},
+ secek:{t:'Sıfat-fiil',m:'Yapılacak (gelecek) işi niteler'},
+ smis:{t:'Sıfat-fiil',m:'Olup bitmiş işi niteler'},
+ sar:{t:'Sıfat-fiil',m:'Süreklilik ya da özellik bildirir'}
 };
 function grp(k){
   if(/-m[ae]z/.test(k)) return 'hemen';
   if(k.indexOf('…')>=0) return 'tekrar';
   if(/ken/.test(k)) return 'es';
-  if(/d[ıiuü]k[çc][ae]/.test(k)) return 'tzaman';
+  if(/[dt][ıiuü]k[çc][ae]/.test(k)) return 'tzaman';
   if(/[ae]l[ıi]$/.test(k)) return 'beri';
   if(/c[ae]s[ıi]n[ae]/.test(k)) return 'benzet';
   if(/[ıiuü]n[cç][ae]$/.test(k)) return 'an';
@@ -885,22 +1142,23 @@ function grp(k){
 }
 const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 function startQuiz(){
-  const e=DB[resIdx], g=grp(e.ek), hlw=e.hl.split(' ').map(norm);
+  const e=DB[resIdx], g=e.g, hlw=e.hl.split(' ').map(norm);
   const others=Object.keys(MEAN).filter(k=>k!==g);
   const same=shuf(others.filter(k=>MEAN[k].t===MEAN[g].t))[0], diff=shuf(others.filter(k=>MEAN[k].t!==MEAN[g].t))[0];
-  qz={e,g,hlw,found:0,stage:1,bad:{},msg:'Cümledeki zarf-fiile dokun!',
+  qz={e,g,hlw,found:0,stage:1,bad:{},msg:'Cümledeki fiilimsiye dokun!',
       toks:e.s.split(' ').map(w=>({w,n:norm(w),st:''})),opts:shuf([g,same,diff])};
   qzRender();
 }
 function qzRender(){
   const q=qz; if(!q) return; let h;
   if(q.stage===1){
-    h='<div class="p-title">1/3 · ZARF-FİİLİ BUL · +'+rw()+'🪙</div><div class="chips">'+
+    h='<div class="p-title">1/3 · FİİLİMSİYİ BUL · +'+rw()+'🪙</div><div class="chips">'+
       q.toks.map((t,i)=>'<button class="chip '+t.st+'" data-a="w" data-v="'+i+'">'+t.w+'</button>').join('')+'</div>';
   }else if(q.stage===2){
-    h='<div class="p-title">2/3 · TÜRÜNÜ SEÇ · +'+rw()+'🪙</div><div class="q-q"><em>'+q.e.hl.toLowerCase()+'</em> hangi tür zarf-fiil?</div>'+
-      '<div class="tw"><button class="chip d '+(q.bad.Durum?'bad':'')+'" data-a="t" data-v="Durum">DURUM</button>'+
-      '<button class="chip z '+(q.bad.Zaman?'bad':'')+'" data-a="t" data-v="Zaman">ZAMAN</button></div>';
+    h='<div class="p-title">2/3 · TÜRÜNÜ SEÇ · +'+rw()+'🪙</div><div class="q-q"><em>'+q.e.hl.toLowerCase()+'</em> hangi fiilimsi?</div>'+
+      '<div class="tw t3"><button class="chip d '+(q.bad['İsim-fiil']?'bad':'')+'" data-a="t" data-v="İsim-fiil">İSİM-FİİL</button>'+
+      '<button class="chip s '+(q.bad['Sıfat-fiil']?'bad':'')+'" data-a="t" data-v="Sıfat-fiil">SIFAT-FİİL</button>'+
+      '<button class="chip z '+(q.bad['Zarf-fiil']?'bad':'')+'" data-a="t" data-v="Zarf-fiil">ZARF-FİİL</button></div>';
   }else{
     h='<div class="p-title">3/3 · NE ANLAM KATIYOR? · +'+rw()+'🪙</div><div class="opts">'+
       q.opts.map(k=>'<button class="chip '+(q.bad[k]?'bad':'')+'" data-a="m" data-v="'+k+'">'+MEAN[k].m+'</button>').join('')+'</div>';
@@ -922,7 +1180,7 @@ panel.addEventListener('click',ev=>{
       qzRender(); setTimeout(()=>{ if(qz===q&&q.stage===1&&t.st==='bad'){t.st='';qzRender();} },700); return;
     }
   }else if(a==='t'){
-    if(v===q.e.tur){ Snd.ding(); q.stage=3; q.bad={}; q.msg='Harika! Son soru.'; }
+    if(v===q.e.fam){ Snd.ding(); q.stage=3; q.bad={}; q.msg='Harika! Son soru.'; }
     else{ bad(); q.bad[v]=1; q.msg=WRONG[Math.floor(Math.random()*3)]; }
   }else{
     if(v===q.g){ finish('ok'); return; }
@@ -930,16 +1188,18 @@ panel.addEventListener('click',ev=>{
   }
   qzRender();
 });
-function panelReady(){setPanel('<div class="p-title">CÜMLE HAZIR!</div><div class="p-msg">Cümledeki zarf-fiili bul,<br>sonra <b style="color:#ffcc33">💡 ÇÖZÜMLE</b>\'ye bas.</div>');}
+function panelReady(){setPanel('<div class="p-title">CÜMLE HAZIR!</div><div class="p-msg">Cümledeki fiilimsiyi bul,<br>sonra <b style="color:#ffcc33">💡 ÇÖZÜMLE</b>\'ye bas.</div>');}
 function panelReveal(e,r){
   let cls,txt;
+  const famCls=e.fam==='İsim-fiil'?'Isim':(e.fam==='Sıfat-fiil'?'Sifat':e.tur);
+  const lab=e.fam==='Zarf-fiil'?'ZARF-FİİL · '+e.tur.toUpperCase():e.fam.toLocaleUpperCase('tr');
   if(r.st==='ok'){cls='ok';txt='★ DOĞRU! +'+r.earned+' 🪙 ★';}
   else if(r.st==='time'){cls='bad';txt='⏰ SÜRE DOLDU! +0 🪙';}
-  else{cls=e.tur;txt='★ CEVAP · +0 🪙 ★';}
+  else{cls=famCls;txt='★ CEVAP · +0 🪙 ★';}
   setPanel('<div class="badge '+cls+'">'+txt+'</div>'+
-    '<div class="row"><span>ZARF-FİİL</span><b>'+e.hl.toLowerCase()+' <em>('+e.tur.toUpperCase()+')</em></b></div>'+
+    '<div class="row"><span>FİİLİMSİ</span><b>'+e.hl.toLowerCase()+' <em>('+lab+')</em></b></div>'+
     '<div class="row"><span>KÖK + EK</span><b>'+e.kok+' <i>+</i> <em>'+e.ek+'</em></b></div>'+
-    '<div class="row"><span>SORU</span><b>'+e.soru+'</b></div>'+
+    (e.soru?'<div class="row"><span>SORU</span><b>'+e.soru+'</b></div>':'')+
     '<div class="note">'+e.not+'</div>');
 }
 
@@ -1052,7 +1312,7 @@ function showResult(r){
 /* --- yeni oyun / sıfırlama --- */
 function resetState(){
   clearTimer(); qz=null; resIdx=-1; revealed=false; reelLive=false; tier=null; wrong=0; RA.prev=-1; RB.prev=-1;
-  $('lampD').classList.remove('on'); $('lampZ').classList.remove('on');
+  lampsOff();
   $('timer').className='hide';
 }
 function newGame(m,name){
@@ -1088,6 +1348,11 @@ const ITEMS=[
  {id:'f2',slot:'f',n:'YEŞİL FORMA',p:50,c:'#1b7f3b',s:[]},
  {id:'f3',slot:'f',n:'MOR FORMA',p:70,c:'#6a1b9a',s:[]},
  {id:'f4',slot:'f',n:'SİYAH FORMA',p:70,c:'#2b2b33',s:[]},
+ {id:'f5',slot:'f',n:'SİYAH-BEYAZ ÇİZGİLİ',p:100,c:'#15151c',c2:'#ffffff',pat:'stripe',s:[]},
+ {id:'f6',slot:'f',n:'SARI-LACİVERT ÇİZGİLİ',p:100,c:'#1b2a6b',c2:'#ffd800',pat:'stripe',s:[]},
+ {id:'f7',slot:'f',n:'KIRMIZI-SARI',p:100,c:'#c8102e',c2:'#ffb000',pat:'half',s:[]},
+ {id:'f8',slot:'f',n:'MAVİ-BORDO ÇİZGİLİ',p:100,c:'#7a1f2b',c2:'#7ab4e6',pat:'stripe',s:[]},
+ {id:'f9',slot:'f',n:'LEWANDOWSKI 9',p:300,c:'#ffffff',sp:'lew',s:[]},
  {id:'h1',slot:'h',n:'KASKET',p:40,s:[[21,3,22,9,'#e63946',1],[38,10,12,3,'#b5171f',1],[30,1,3,2,'#b5171f',1]]},
  {id:'h6',slot:'h',n:'BERE',p:50,s:[[21,2,22,10,'#2a9d8f',1],[20,10,24,4,'#1d7a6f',1],[30,0,4,3,'#fff',1]]},
  {id:'h5',slot:'h',n:'PARTİ ŞAPKASI',p:70,s:[[31,0,2,2,'#ffd700',1],[29,2,6,2,'#7b2ff7',1],[27,4,10,2,'#7b2ff7',1],[25,6,14,2,'#7b2ff7',1],[23,8,18,3,'#7b2ff7',1],[27,5,10,1,'#fff',0],[25,8,14,1,'#fff',0]]},
@@ -1246,7 +1511,7 @@ function renderEnd(){
 /* --- slot akışı --- */
 function startSpin(){
   clearTimer(); reelLive=true; revealed=false; resIdx=-1; tier=null; wrong=0;
-  $('lampD').classList.remove('on'); $('lampZ').classList.remove('on');
+  lampsOff();
   const sd=1.2+Math.random()*.8;
   RA.phase='spin'; RA.phaseT=0; RA.spinDur=sd*.6; RA.tgt=pickTier();
   RB.phase='spin'; RB.phaseT=0; RB.spinDur=sd;
@@ -1296,7 +1561,7 @@ function finish(kind){
   Snd.init(); Snd.ding();
   if(kind==='ok') setTimeout(()=>Snd.win(),250); else if(kind==='time') Snd.wrong();
   panelReveal(e,r);
-  $(e.tur==='Durum'?'lampD':'lampZ').classList.add('on');
+  $(e.fam==='İsim-fiil'?'lampI':e.fam==='Sıfat-fiil'?'lampS':'lampZ').classList.add('on');
   winFX(kind==='ok'?Math.min(40,8+r.earned):4);
   showResult(r); hud(true); ui();
   if(mode==='race'&&qDone>=QMAX){ over=true; ui(); setTimeout(showEnd,3200); }
@@ -1356,10 +1621,11 @@ document.addEventListener('keydown',e=>{
 
 /* ================= ÖLÇEKLEME ================= */
 const vp=$('viewport'); let fitTry=0;
+const IS_MOBILE=/Android|iPhone|iPad|iPod|Mobile|Windows Phone/i.test(navigator.userAgent)||((navigator.maxTouchPoints||0)>1&&window.matchMedia&&matchMedia('(pointer:coarse)').matches&&!matchMedia('(hover:hover)').matches);
 function fit(){
   const de=document.documentElement, W=Math.round(innerWidth||de.clientWidth), H=Math.round(innerHeight||de.clientHeight);
   if(!W||!H){ if(fitTry++<40) setTimeout(fit,100); return; }      // boyut henüz bilinmiyorsa tekrar dene (siyah ekran nedeni)
-  const rot=H>W*1.15&&W<900;                                        // dik telefon: sahneyi 90° döndürüp ekranı doldur
+  const rot=IS_MOBILE&&H>W*1.15;                                        // dik telefon: sahneyi 90° döndürüp ekranı doldur
   const s=rot?Math.min(H/1600,W/900):Math.min(W/1600,H/900);
   const sw=(rot?900:1600)*s, sh=(rot?1600:900)*s, ox=(W-sw)/2, oy=(H-sh)/2;
   vp.style.left='0px'; vp.style.top='0px';
