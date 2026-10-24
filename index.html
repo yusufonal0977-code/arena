@@ -1808,11 +1808,11 @@ function qzStart(id){
   const q=SITE.quizzes.find(x=>x.id===id); if(!q) return;
   const name=($('qzName').value.trim()||'MİSAFİR').toLocaleUpperCase('tr').slice(0,14);
   viewMode='quiz'; QZ={q,i:0,ans:[],name,t0:Date.now(),end:Date.now()+q.dur*1000,iv:null};
-  QZ.iv=setInterval(qzTick,250); qzRender();
+  QZ.iv=setInterval(qzTick,250); pqRender();
 }
 function qzTick(){ if(!QZ) return; const left=(QZ.end-Date.now())/1000; const t=$('qzT'),b=$('qzB');
   if(t) t.textContent='⏱ '+mmss(left); if(b) b.style.width=Math.max(0,left/QZ.q.dur*100)+'%'; if(left<=0) qzFinish(); }
-function qzRender(){
+function pqRender(){
   const Q=QZ.q.qs[QZ.i];
   box('<div class="qhead"><span>Soru '+(QZ.i+1)+' / '+QZ.q.qs.length+'</span><span id="qzT"></span></div><div class="qbar"><i id="qzB"></i></div>'+
     '<div class="qq">'+esc(Q.q)+'</div><div class="opts">'+Q.o.map((o,k)=>'<button class="nb" data-qa="pick" data-v="'+k+'"><em>'+'ABCD'[k]+'</em><span>'+esc(o)+'</span></button>').join('')+'</div>'+
@@ -1976,7 +1976,7 @@ async function qa(a,v){
   if(a==='start') return qzIntro(v);
   if(a==='go') return qzStart(v);
   if(a==='qlist') return showQuizList();
-  if(a==='pick'){ if(!QZ) return; QZ.ans[QZ.i]=+v; QZ.i++; return QZ.i>=QZ.q.qs.length?qzFinish():qzRender(); }
+  if(a==='pick'){ if(!QZ) return; QZ.ans[QZ.i]=+v; QZ.i++; return QZ.i>=QZ.q.qs.length?qzFinish():pqRender(); }
   if(a==='qexit'){ qzStop(); return showQuizList(); }
   if(a==='qboard') return showBoard('qz',v);
   if(a==='adlogin') return adLogin();
