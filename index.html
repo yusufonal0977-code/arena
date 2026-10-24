@@ -1745,7 +1745,7 @@ document.addEventListener('keydown',e=>{
 
 /* ================= SİTE: TABLOLAR · QUİZLER · YÖNETİM ================= */
 const ADMIN_PW='86754231';
-const SK='zfSite_v1', SCK='zfSiteScores_v1', AIK='zfAiKey_v1', AIM='zfAiModel_v1';
+const SK='zfSite_v1', SCK='zfSiteScores_v1', AIK='zfGeminiKey_v1', AIM='zfGeminiModel_v1';
 const lsGet=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}};
 const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}};
 let SITE=Object.assign({boards:[],quizzes:[],ts:0},lsGet(SK,{}));
@@ -1852,8 +1852,9 @@ function adRender(){
       '<div class="row3"><div><label class="lab">Soru sayısı</label><input id="nqN" class="fld" type="number" min="3" max="30" value="10"></div>'+
       '<div><label class="lab">Çözme süresi (dk)</label><input id="nqD" class="fld" type="number" min="1" max="90" value="5"></div>'+
       '<div><label class="lab">Açık kalma süresi</label><select id="nqE" class="fld"><option value="0">Sınırsız</option><option value="30">30 dakika</option><option value="60">1 saat</option><option value="360">6 saat</option><option value="1440">1 gün</option><option value="10080">1 hafta</option></select></div></div>'+
+      '<div class="row3" style="grid-template-columns:1fr 2fr"><div><label class="lab">Zorluk</label><select id="nqZ" class="fld"><option value="mix">Karışık</option><option value="easy">Kolay</option><option value="hard">Zor</option></select></div><div><label class="lab">Odak konu (isteğe bağlı)</label><input id="nqK" class="fld" maxlength="120" placeholder="Örn. sıfat-fiil ekleri"></div></div>'+
       '<label class="lab">Sıralama tablosu</label><select id="nqB" class="fld"><option value="new">+ Yeni tablo (quiz adıyla)</option>'+SITE.boards.map(b=>'<option value="'+b.id+'">'+esc(b.name)+'</option>').join('')+'</select>'+
-      '<div class="hint">'+(aiOn()?'🤖 Yapay zeka açık: sorular PDF içeriğinden üretilir.':'⚠ Yapay zeka anahtarı yok: basit yedek üretici kullanılır. Daha iyi sorular için ⚙ AYARLAR’dan anahtar ekle.')+'</div>'+
+      '<div class="hint">'+(aiOn()?'✨ Gemini açık: sorular PDF içeriğinden üretilir.':'⚠ Gemini anahtarı yok: basit yedek üretici kullanılır. Daha iyi sorular için ⚙ AYARLAR’dan ücretsiz Gemini anahtarı ekle.')+'</div>'+
       '<div class="stat" id="adStat"></div><button class="nb pri big" id="genBtn" data-qa="gen">⚡ OLUŞTUR &amp; YAYINLA</button>';
   }else if(adTab==='quizzes'){
     h+=SITE.quizzes.length?SITE.quizzes.slice().reverse().map(q=>{const o=quizOpen(q); return '<div class="qcard"><div><b>'+esc(q.title)+'</b><span>'+q.qs.length+' soru · '+Math.round(q.dur/60)+' dk · '+(o?(q.exp?leftTxt(q.exp):'açık'):'kapalı')+' · '+esc((SITE.boards.find(b=>b.id===q.board)||{name:'tablo yok'}).name)+'</span></div>'+
@@ -1863,11 +1864,11 @@ function adRender(){
       (SITE.boards.length?SITE.boards.map(b=>'<div class="qcard"><div><b>'+esc(b.name)+'</b><span>'+SITE.quizzes.filter(q=>q.board===b.id).length+' quiz bağlı</span></div><div class="acts"><button class="nb sm" data-qa="qboard" data-v="'+b.id+'">GÖR</button><button class="nb sm" data-qa="breset" data-v="'+b.id+'">SIFIRLA</button><button class="nb sm danger" data-qa="bdel" data-v="'+b.id+'">SİL</button></div></div>').join(''):'<p>Henüz tablo yok.</p>');
   }else{
     const cs={on:'☁ Bulut senkronu açık: quizler herkese görünür.',deny:'⚠ Buluta yazılamadı (Firestore kuralları): quizler yalnızca bu cihazda.',login:'⚠ Quizlerin herkese görünmesi için yönetici hesabıyla Google girişi gerekir.',off:'💾 Bulut yok: quizler yalnızca bu cihazda.'}[siteCloud]||'';
-    h+='<label class="lab">Anthropic API anahtarı (yalnızca bu tarayıcıda saklanır)</label><input id="aiK" class="fld" type="password" placeholder="sk-ant-…" value="'+esc(lsGet(AIK,''))+'" autocomplete="off">'+
-      '<label class="lab">Model</label><input id="aiM" class="fld" value="'+esc(lsGet(AIM,'claude-sonnet-5-5'))+'">'+
+    h+='<label class="lab">Google Gemini API anahtarı (yalnızca bu tarayıcıda saklanır)</label><input id="aiK" class="fld" type="password" placeholder="AIza… / AQ.…" value="'+esc(lsGet(AIK,''))+'" autocomplete="off">'+
+      '<label class="lab">Model</label><input id="aiM" class="fld" value="'+esc(lsGet(AIM,'gemini-2.5-flash'))+'">'+
       '<div class="bts"><button class="nb pri sm" data-qa="savekey">KAYDET</button></div>'+
       '<div class="stat" id="adStat">'+cs+'</div>'+((siteCloud==='login'||siteCloud==='deny')?'<div class="bts"><button class="nb sm" data-g="in">G · GOOGLE İLE GİRİŞ</button></div>':'')+
-      '<div class="hint">Not: şifre ve anahtar tarayıcıda çalışan kodda durur; gerçek güvenlik için Firestore kurallarında yazmayı yönetici e-postasına kısıtla.</div>';
+      '<div class="hint">Ücretsiz anahtar: aistudio.google.com/apikey · Model: gemini-2.5-flash (dolu/yoksa otomatik gemini-flash-latest denenir).</div><div class="hint">Not: şifre ve anahtar tarayıcıda çalışan kodda durur; gerçek güvenlik için Firestore kurallarında yazmayı yönetici e-postasına kısıtla.</div>';
   }
   box(h+'<div class="bts"><button class="nb ghost sm" data-qa="adout">ÇIKIŞ YAP</button><button class="nb" data-act="close">KAPAT</button></div>');
 }
@@ -1888,24 +1889,51 @@ async function pdfTexts(files){
   return out.replace(/[ \t]+/g,' ').trim();
 }
 /* yapay zeka ile soru üretimi */
-function sampleText(t,max){ if(t.length<=max) return t; const k=Math.floor(max/3); const m=Math.floor(t.length/2); return t.slice(0,k)+'\n…\n'+t.slice(m-k/2,m+k/2)+'\n…\n'+t.slice(-k); }
+function sampleText(t,max){ if(t.length<=max) return t; const k=Math.floor(max/4); let o=[]; for(let i=0;i<4;i++){ const st=Math.floor((t.length-k)*i/3); o.push(t.slice(st,st+k)); } return o.join('\n…\n'); }
 function normQs(arr){
   const out=[]; (arr||[]).forEach(x=>{
     if(!x||typeof x.q!=='string'||!Array.isArray(x.o)||x.o.length!==4||!Number.isInteger(x.a)||x.a<0||x.a>3) return;
     const o=x.o.map(String), c=o[x.a], sh=shuf(o); out.push({q:x.q.trim(),o:sh,a:sh.indexOf(c),e:String(x.e||'').slice(0,240)});
   }); return out;
 }
-async function aiQuestions(text,n,key){
-  const ctl=new AbortController(), to=setTimeout(()=>ctl.abort(),90000);
-  try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',signal:ctl.signal,headers:{'content-type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:lsGet(AIM,'claude-sonnet-5-5'),max_tokens:Math.min(8000,600+n*320),messages:[{role:'user',content:
-        'Aşağıdaki metne dayanarak tam '+n+' adet çoktan seçmeli (4 seçenekli) sınav sorusu üret. Sorular yalnızca metindeki bilgiye dayansın, birbirini tekrar etmesin, zorluk karışık olsun, yanlış seçenekler akla yatkın olsun. '+
-        'SADECE şu biçimde geçerli JSON döndür, başka hiçbir şey yazma: {"questions":[{"q":"soru","o":["A","B","C","D"],"a":0,"e":"doğru cevabın kısa açıklaması"}]} (a = doğru seçeneğin 0-3 arası indeksi). Metnin dilini kullan.\n\nMETİN:\n'+sampleText(text,45000)}]})});
-    if(!r.ok){ const t=await r.text(); throw new Error('API '+r.status+(r.status===401?' (anahtar geçersiz)':'')); }
-    const j=await r.json(), tx=(j.content||[]).map(c=>c.text||'').join(''), a=tx.indexOf('{'), b=tx.lastIndexOf('}');
-    return normQs(JSON.parse(tx.slice(a,b+1)).questions);
-  } finally { clearTimeout(to); }
+const normK=t=>t.toLocaleLowerCase('tr').replace(/[^\p{L}\p{N} ]/gu,'').replace(/\s+/g,' ').trim();
+function dedupQs(qs){
+  const seen=new Set(); return qs.filter(x=>{ if(new Set(x.o.map(normK)).size<4||x.q.length<12) return false;
+    const k=normK(x.q).slice(0,48); if(seen.has(k)) return false; seen.add(k); return true; });
+}
+async function aiQuestions(text,n,key,opt){
+  opt=opt||{}; const want=Math.min(n+3,33);
+  const models=[lsGet(AIM,'gemini-2.5-flash'),'gemini-flash-latest'].filter((m,i,a)=>m&&a.indexOf(m)===i);
+  const diff={mix:'Zorluk karışık olsun: yaklaşık %30 kolay, %50 orta, %20 zor.',easy:'Çoğunlukla kolay ve orta düzeyde olsun.',hard:'Çoğunlukla zor olsun: çıkarım, karşılaştırma ve uygulama gerektirsin.'}[opt.diff||'mix'];
+  const SYS='Sen deneyimli bir ölçme-değerlendirme uzmanı ve öğretmensin. Verilen kaynak metinden, gerçek sınavlarda kullanılabilecek kalitede çoktan seçmeli sorular yazarsın.';
+  const prompt='Aşağıdaki kaynak metne dayanarak tam '+want+' adet çoktan seçmeli soru yaz.\n\nKURALLAR:\n'+
+   '- Yalnızca kaynak metindeki bilgiye dayan; metinde olmayan bilgi ekleme.\n'+
+   '- Soru türlerini çeşitlendir: bilgi hatırlama, kavrama/yorumlama, örnek tanıma veya uygulama, çıkarım.\n'+
+   '- Her soru tek başına anlaşılsın; "metne göre", "yukarıdaki parçada" gibi ifadeler kullanma.\n'+
+   '- Tam 4 seçenek olsun, yalnızca biri doğru olsun. Yanlış seçenekler aynı kategoriden, benzer uzunlukta ve akla yatkın olsun (sık yapılan yanlış anlamalardan türet). "Hiçbiri", "Hepsi" gibi seçenekler kullanma. Doğru cevabın konumunu rastgele dağıt.\n'+
+   '- Sorular birbirini tekrar etmesin ve metnin farklı bölümlerini kapsasın.\n'+
+   '- '+diff+'\n'+(opt.focus?'- Özellikle şu konuya odaklan: '+opt.focus+'\n':'')+
+   '- "e" alanına doğru cevabın neden doğru olduğunu tek cümleyle yaz.\n'+
+   '- Yazmadan önce her sorunun cevabını metinle doğrula; emin olmadığın soruyu at, yerine yenisini yaz.\n'+
+   '- Metnin dilini kullan. "a", doğru seçeneğin 0-3 arası indeksidir.\n\nKAYNAK METİN:\n'+sampleText(text,150000);
+  const schema={type:'OBJECT',properties:{questions:{type:'ARRAY',items:{type:'OBJECT',properties:{q:{type:'STRING'},o:{type:'ARRAY',items:{type:'STRING'}},a:{type:'INTEGER'},e:{type:'STRING'}},required:['q','o','a','e']}}},required:['questions']};
+  let last=null;
+  for(const m of models){
+    const ctl=new AbortController(), to=setTimeout(()=>ctl.abort(),100000);
+    try{
+      const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(m)+':generateContent',{method:'POST',signal:ctl.signal,
+        headers:{'content-type':'application/json','x-goog-api-key':key},
+        body:JSON.stringify({systemInstruction:{parts:[{text:SYS}]},contents:[{role:'user',parts:[{text:prompt}]}],
+          generationConfig:{temperature:.5,maxOutputTokens:16000,responseMimeType:'application/json',responseSchema:schema}})});
+      if(r.status===404){ last=new Error('model bulunamadı ('+m+')'); continue; }
+      if(!r.ok){ let msg=''; try{ msg=((await r.json()).error||{}).message||''; }catch(e){}
+        throw new Error(r.status===429?'ücretsiz kota doldu, birkaç dakika bekle':(r.status===400&&/api key/i.test(msg))||r.status===401?'API anahtarı geçersiz':r.status===403?'anahtarın izni yok ya da bölge desteklenmiyor':'Gemini '+r.status); }
+      const j=await r.json(), tx=((((j.candidates||[])[0]||{}).content||{}).parts||[]).map(x=>x.text||'').join(''), a=tx.indexOf('{'), b=tx.lastIndexOf('}');
+      return dedupQs(normQs(JSON.parse(tx.slice(a,b+1)).questions)).slice(0,n);
+    }catch(e){ if(e.name==='AbortError') throw new Error('zaman aşımı'); last=e; if(!/model bulunamadı/.test(e.message)) throw e; }
+    finally{ clearTimeout(to); }
+  }
+  throw last||new Error('model bulunamadı');
 }
 /* yedek: internet/anahtar yokken boşluk doldurma soruları */
 function localQuestions(text,n){
@@ -1933,7 +1961,7 @@ async function adGen(){
     adStat('PDF okunuyor…'); const text=await pdfTexts(files);
     if(text.length<200) throw new Error('PDF’den yeterli metin çıkarılamadı (taranmış/görsel PDF olabilir).');
     let qs=null, note=''; const key=lsGet(AIK,'');
-    if(key){ adStat('Yapay zeka soruları hazırlıyor…'); try{ qs=await aiQuestions(text,n,key); }catch(e){ note=' (yapay zeka hatası: '+(e.name==='AbortError'?'zaman aşımı':e.message)+' → yedek üretici)'; } }
+    if(key){ adStat('Gemini soruları hazırlıyor…'); try{ qs=await aiQuestions(text,n,key,{diff:$('nqZ').value,focus:$('nqK').value.trim().slice(0,120)}); }catch(e){ note=' (Gemini hatası: '+(e.name==='AbortError'?'zaman aşımı':e.message)+' → yedek üretici)'; } }
     else note=' (yedek üretici)';
     if(!qs||!qs.length){ qs=localQuestions(text,n); if(!note) note=' (yedek üretici)'; }
     if(!qs.length) throw new Error('Bu PDF’den soru üretilemedi.');
@@ -1955,7 +1983,7 @@ async function qa(a,v){
   if(a==='adout'){ admin=false; return showAdmin(); }
   if(a==='tab'){ adTab=v; return adRender(); }
   if(a==='gen') return adGen();
-  if(a==='savekey'){ lsSet(AIK,$('aiK').value.trim()); lsSet(AIM,$('aiM').value.trim()||'claude-sonnet-5-5'); return adStat('Kaydedildi.','ok'); }
+  if(a==='savekey'){ lsSet(AIK,$('aiK').value.trim()); lsSet(AIM,$('aiM').value.trim()||'gemini-2.5-flash'); return adStat('Kaydedildi.','ok'); }
   if(a==='qtoggle'){ const q=SITE.quizzes.find(x=>x.id===v); if(q){ q.exp=quizOpen(q)?Date.now():0; await siteSave(); } return adRender(); }
   if(a==='qdel'){ if(!confirm('Bu quiz silinsin mi?')) return; SITE.quizzes=SITE.quizzes.filter(x=>x.id!==v); await siteSave(); return adRender(); }
   if(a==='bnew'){ const n=$('nbN').value.trim(); if(!n) return; SITE.boards.push({id:uid8(),name:n.slice(0,24)}); await siteSave(); return adRender(); }
