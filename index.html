@@ -330,6 +330,7 @@ html,body{height:100%;background:#05030c;overflow:hidden;font-family:'VT323','Co
       <div class="gt"><b>Fiilimsi Slot Yarışı</b><span>Kolu çek, cümledeki fiilimsiyi bul</span></div>
       <div class="ga"><button class="nb pri sm" id="startRace">🏁 YARIŞ</button><button class="nb sm" id="startFree">🎮 SERBEST</button></div>
     </div>
+    <div class="gc" data-kind="game"><div class="gi">🏫</div><div class="gt"><b>Sınıf Yarışı</b><span id="clsSub">Sınıfa katıl, sınırsız çöz</span></div><div class="ga"><button class="nb pri sm" id="startClass">🏫 SINIFA GİR</button></div></div>
     <div id="qCards"></div>
   </div>
   <div class="tiles tiles3">
@@ -867,13 +868,13 @@ function markSeen(e){ if(!e) return; SEEN.add(e.id); lastSeenId=e.id; seenSave()
 const FAMS=['İsim-fiil','Sıfat-fiil','Zarf-fiil'];
 function pickFresh(){
   /* önce fiilimsi türü eşit olasılıkla rastgele seçilir, sonra o türden görülmemiş bir soru gelir */
-  const free=()=>{const by={};FAMS.forEach(f=>by[f]=[]);for(let i=0;i<N;i++) if(!SEEN.has(DB[i].id)) by[DB[i].fam].push(i);return by;};
+  const free=()=>{const by={},sv=clsSolved();FAMS.forEach(f=>by[f]=[]);for(let i=0;i<N;i++) if(!SEEN.has(DB[i].id)&&!(sv&&sv[DB[i].id])) by[DB[i].fam].push(i);return by;};
   let by=free(), fl=FAMS.filter(f=>by[f].length);
   if(!fl.length){
     SEEN.clear(); if(lastSeenId) SEEN.add(lastSeenId); seenSave();
     by=free(); fl=FAMS.filter(f=>by[f].length);
   }
-  const pool=by[fl[Math.floor(Math.random()*fl.length)]];
+  if(!fl.length) return Math.floor(Math.random()*N); const pool=by[fl[Math.floor(Math.random()*fl.length)]];
   return pool[Math.floor(Math.random()*pool.length)];
 }
 
@@ -1138,7 +1139,16 @@ ring($('machine'),12,8,536,124,26);
 ring($('frame'),6,6,492,182,24);
 
 /* ================= MAKARALAR (2 SLOT: ÖDÜL + CÜMLE) ================= */
-const TIERS=[{c:5,t:60},{c:10,t:45},{c:15,t:40},{c:20,t:30},{c:25,t:25},{c:30,t:20},{c:40,t:15}];
+const TIERS=[{c:5,t:40},{c:10,t:40},{c:15,t:45},{c:20,t:45},{c:25,t:50},{c:30,t:55},{c:40,t:60}];
+/* ZORLUK: puan şansa değil sorunun zorluğuna bağlı (kolay=az, zor=çok). Ayar için GBASE değerlerini değiştir (0=en kolay … 6=en zor) */
+const GBASE={bicim:0,bag:1,imek:1,san:2,es:2,an:2,olumsuz:2,tzaman:3,beri:3,ima:3,iis:3,tekrar:3,smez:4,benzet:4,hemen:4,secek:4,smis:4,sdik:5,sar:5};
+function diffIdx(e){
+  let d=GBASE[e.g]!=null?GBASE[e.g]:2;
+  if(e.hl.indexOf(' ')>=0&&e.g!=='tekrar'&&e.g!=='hemen') d++;
+  if(e.s.replace(/[.,!?;:]/g,'').split(/\s+/).length>=6) d++;
+  return Math.min(6,d);
+}
+let preQ=null;
 const TW=[3,3,3,2,2,1,1], NR=TIERS.length;
 const modn=(i,n)=>((i%n)+n)%n;
 let reelLive=false, revealed=false, resIdx=-1, tier=null, wrong=0;
@@ -1164,7 +1174,7 @@ const RA=mkReel('reelA',NR,innerA,1.6), RB=mkReel('reelB',N,innerB,2.2);
 RA.pick=()=>{const t=Math.round(RA.pos+7);return t+modn(RA.tgt-t,NR);};
 RB.pick=()=>{
   /* durak yine ~11 adım ilerde; o duraktaki soruyu, kullanıcının görmediği bir soruyla yer değiştiriyoruz */
-  const t=Math.round(RB.pos+11), cur=mod(t), want=pickFresh();
+  const t=Math.round(RB.pos+11), cur=mod(t), want=preQ?DB.indexOf(preQ):pickFresh();
   if(cur!==want){ const tmp=DB[cur]; DB[cur]=DB[want]; DB[want]=tmp; }
   return t;
 };
@@ -1325,7 +1335,7 @@ const hist=[], QMAX=5;
 const mainBtn=$('mainBtn'), solveBtn=$('solveBtn'), zoomBtn=$('zoomBtn');
 function ui(){
   const pending=resIdx>=0&&!revealed;
-  mainBtn.disabled=busy||!mode||over||(mode==='race'&&pending);
+  mainBtn.disabled=busy||!mode||over||(mode!=='free'&&pending);
   mainBtn.innerHTML=started?'KOLU ÇEK':'KOLU ÇEK &amp; OYUNA BAŞLA';
   solveBtn.disabled=!(RB.phase==='idle'&&pending&&!busy&&mode&&!over);
   zoomBtn.disabled=!started;
@@ -1397,8 +1407,8 @@ function hud(bump){
   s.className='';
   const pend=(busy||(resIdx>=0&&!revealed))?1:0;
   const sub=mode==='race'?'SORU '+Math.min(qDone+pend,QMAX)+'/'+QMAX
-    :qDone+' SORU · SON 5: '+hist.slice(-5).reduce((a,b)=>a+b,0)+'🪙';
-  s.innerHTML='<div class="nm">'+(mode==='race'?'🏁 '+esc(player):'🎮 SERBEST MOD')+'</div><div class="cn">🪙 '+coins+'</div><div class="sub">'+sub+'</div>';
+    :mode==='class'?(clsOk()+' DOĞRU · OTURUM +'+coins+'🪙'):qDone+' SORU · SON 5: '+hist.slice(-5).reduce((a,b)=>a+b,0)+'🪙';
+  s.innerHTML='<div class="nm">'+(mode==='race'?'🏁 '+esc(player):mode==='class'?'🏫 '+esc(CLS?CLS.name:'')+' · '+esc(player):'🎮 SERBEST MOD')+'</div><div class="cn">'+(mode==='class'?'⭐ '+clsPts():'🪙 '+coins)+'</div><div class="sub">'+sub+'</div>';
   if(bump){void s.offsetWidth;s.classList.add('bump');}
 }
 
@@ -1574,16 +1584,16 @@ function boardHTML(k){
 }
 const backBtn=()=>'<div class="bts"><button class="btn" data-act="'+(backTo==='end'?'endback':'close')+'">'+(backTo==='end'?'GERİ':'KAPAT')+'</button></div>';
 function showBoard(from,tab){
-  viewMode='lb'; backTo=from||null; if(tab) curBoard=tab; const st=$('infoBox').scrollTop;
-  if(curBoard!=='general'&&!SITE.boards.some(b=>b.id===curBoard)) curBoard='general';
-  const tabs=SITE.boards.length?'<div class="tabs"><button class="tab'+(curBoard==='general'?' on':'')+'" data-bd="general">GENEL</button>'+SITE.boards.map(b=>'<button class="tab'+(curBoard===b.id?' on':'')+'" data-bd="'+b.id+'">'+esc(b.name)+'</button>').join('')+'</div>':'';
+  viewMode='lb'; backTo=from||null; if(tab) curBoard=tab; clsTimerStop(); const st=$('infoBox').scrollTop;
+  if(curBoard!=='general'&&!SITE.boards.some(b=>b.id===curBoard)&&!isCls(curBoard)) curBoard='general';
+  const BL=(SITE.classes||[]).map(c=>({id:c.id,name:'🏫 '+c.name})).concat(SITE.boards), tabs=BL.length?'<div class="tabs"><button class="tab'+(curBoard==='general'?' on':'')+'" data-bd="general">GENEL</button>'+BL.map(b=>'<button class="tab'+(curBoard===b.id?' on':'')+'" data-bd="'+b.id+'">'+esc(b.name)+'</button>').join('')+'</div>':'';
   const body=curBoard==='general'
     ? cloudChip()+'<h3 class="mkt">⭐ TOPLAM SKOR</h3><p class="small">Şimdiye kadar topladığı tüm coinler</p>'+boardHTML('total')+
       '<h3 class="mkt">🚀 TEK SEFERDE EN YÜKSEK</h3><p class="small">5 soruluk yarışta en iyi denemesi</p>'+boardHTML('best')
     : '<div id="bdBody"><p>Yükleniyor…</p></div>';
   $('infoBox').innerHTML='<h2>🏆 SIRALAMA</h2>'+tabs+body+backBtn();
   $('infoOv').classList.remove('hide'); $('infoBox').scrollTop=st;
-  if(curBoard!=='general'){ const id=curBoard; boardRows(id).then(rows=>{ const el=$('bdBody'); if(viewMode!=='lb'||curBoard!==id||!el) return;
+  if(isCls(curBoard)){ clsBoard(curBoard); } else if(curBoard!=='general'){ const id=curBoard; boardRows(id).then(rows=>{ const el=$('bdBody'); if(viewMode!=='lb'||curBoard!==id||!el) return;
     el.innerHTML=rows.length?'<div class="lb">'+rows.map((x,i)=>'<div class="lbrow"><span class="lbn">'+(i<3?['🥇','🥈','🥉'][i]:(i+1)+'.')+' '+esc(x.n)+'</span><b>'+x.s+' <small style="color:#8fa0b4">· '+x.c+' quiz</small></b></div>').join('')+'</div>':'<p>Henüz skor yok. İlk sen ol!</p>'; }); }
 }
 /* --- market --- */
@@ -1636,13 +1646,13 @@ function startSpin(){
   clearTimer(); reelLive=true; revealed=false; resIdx=-1; tier=null; wrong=0;
   lampsOff();
   const sd=1.2+Math.random()*.8;
-  RA.phase='spin'; RA.phaseT=0; RA.spinDur=sd*.6; RA.tgt=pickTier();
+  preQ=DB[pickFresh()]; RA.phase='spin'; RA.phaseT=0; RA.spinDur=sd*.6; RA.tgt=diffIdx(preQ);
   RB.phase='spin'; RB.phaseT=0; RB.spinDur=sd;
   qz=null; Snd.whirrStart(); panelSpin(); $('timer').className='hide'; hud(); ui();
 }
 function onStopped(){
   Snd.whirrStop(); Snd.thunk();
-  if(!tier) tier=TIERS[modn(Math.round(RA.pos),NR)];
+  tier=TIERS[diffIdx(DB[mod(Math.round(RB.pos))])];
   resIdx=mod(Math.round(RB.pos)); RB.prev=resIdx; markSeen(DB[resIdx]);
   setTimeout(()=>Snd.ding(),180);
   winFX(6); startQuiz(); startTimer();
@@ -1665,6 +1675,7 @@ function winFX(n){
 }
 async function pull(){
   if(busy||mainBtn.disabled) return;
+  if(mode==='class'&&DB.every(e=>(clsData().s||{})[e.id])){ box('<h2>🎉 HEPSİNİ ÇÖZDÜN!</h2><p>Sınıftaki tüm soruları puanladın. Harikasın!</p><div class="bts"><button class="nb" data-act="menu">MENÜ</button></div>'); return; }
   Snd.init(); Snd.click();
   busy=true; started=true; revealed=false; ui();
   await leverSequence(()=>{ startSpin(); zoomIn(); });
@@ -1680,7 +1691,7 @@ function finish(kind){
     r.bonus=Math.round(c*.5*Math.max(0,tLeft)/tTot);
     r.earned=r.base+r.bonus; coins+=r.earned;
   }
-  hist.push(r.earned); qDone++;
+  hist.push(r.earned); qDone++; if(mode==='class') clsAward(e.id,r.earned,kind==='ok');
   Snd.init(); Snd.ding();
   if(kind==='ok') setTimeout(()=>Snd.win(),250); else if(kind==='time') Snd.wrong();
   panelReveal(e,r);
@@ -1712,7 +1723,7 @@ $('menuBtn').addEventListener('click',()=>{
   Snd.init(); Snd.click();
   if(mode&&!over&&coins>0){
     viewMode='confirm';
-    $('infoBox').innerHTML='<h2>MENÜYE DÖN?</h2><p>Mevcut oyun sıfırlanacak, puanın kaydedilmeyecek.</p><div class="bts"><button class="btn red" data-act="menu">MENÜYE DÖN</button><button class="btn" data-act="close">DEVAM ET</button></div>';
+    $('infoBox').innerHTML='<h2>MENÜYE DÖN?</h2><p>'+(mode==='class'?'Puanların sınıf tablosuna kaydedildi; istediğin zaman kaldığın yerden devam edebilirsin.':'Mevcut oyun sıfırlanacak, puanın kaydedilmeyecek.')+'</p><div class="bts"><button class="btn red" data-act="menu">MENÜYE DÖN</button><button class="btn" data-act="close">DEVAM ET</button></div>';
     $('infoOv').classList.remove('hide'); return;
   }
   abandon(); $('infoOv').classList.add('hide'); $('menuOv').classList.remove('hide');
@@ -1744,25 +1755,89 @@ document.addEventListener('keydown',e=>{
 
 
 /* ================= SİTE: TABLOLAR · QUİZLER · YÖNETİM ================= */
-const ADMIN_PW='86754231';
+const ADMIN_PW='1923';
 const SK='zfSite_v1', SCK='zfSiteScores_v1', AIK='zfGeminiKey_v1', AIM='zfGeminiModel_v1';
 const lsGet=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}};
 const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}};
-let SITE=Object.assign({boards:[],quizzes:[],ts:0},lsGet(SK,{}));
+let SITE=Object.assign({boards:[],quizzes:[],classes:[],ts:0},lsGet(SK,{}));
 let SCORES=lsGet(SCK,[]), siteCloud='off', admin=false, adTab='new', curBoard='general', adBusy=false, QZ=null;
 const uid8=()=>Math.random().toString(36).slice(2,9);
+/* ===== SINIF YARIŞI: öğretmen sınıf açar, öğrenci katılır, sınırsız soru çözer. Puan = sorunun zorluğu (+hız), her soru sınıfta bir kez puanlanır.
+   Veri, mevcut players/{uid} belgesinde tutulur: cls[sınıf]={p,ok,s:{soruId:puan}} ve sıralama için cp_<sınıf> alanı ===== */
+const CLK='zfClass_v1'; let CLS=lsGet(CLK,null), bdTm=null;
+const isCls=id=>(SITE.classes||[]).some(c=>c.id===id);
+const clsData=()=>(CLS&&PROF.cls&&PROF.cls[CLS.id])||{p:0,ok:0,s:{}};
+const clsPts=()=>clsData().p||0, clsOk=()=>clsData().ok||0;
+function clsSolved(){ return (mode==='class'&&CLS)?(clsData().s||{}):null; }
+async function clsAward(qid,earned,ok){
+  if(!ok||!CLS||earned<=0) return; const id=CLS.id;
+  const w=await upd(p=>{ p.cls=p.cls||{}; const c=p.cls[id]=Object.assign({p:0,ok:0,s:{}},p.cls[id]); c.s=c.s||{};
+    if(c.s[qid]) return; c.s[qid]=earned; c.p+=earned; c.ok++; p['cp_'+id]=c.p; p.total+=earned; });
+  hud(true); if(w!=='cloud'&&revealed){ const t=$('timer'); if(t) t.innerHTML+=' <small>⚠ buluta yazılamadı</small>'; }
+}
+function showClassPicker(){
+  viewMode='cpick'; qzStop(); const L=(SITE.classes||[]).slice().reverse();
+  box('<h2>🏫 SINIF YARIŞI</h2><p>Sınıfını seç, adını yaz ve katıl. İstediğin kadar soru çöz: zor soru çok, kolay soru az puan verir.</p>'+
+    '<input id="clName" class="fld" maxlength="14" placeholder="Adın (sıralamada görünür)" value="'+esc(PROF.n||(myName()==='OYUNCU'?'':myName()))+'" style="text-align:center;margin:8px 0">'+
+    (L.length?L.map(c=>{const j=PROF.cls&&PROF.cls[c.id]; return '<div class="qcard"><div><b>'+esc(c.name)+'</b><span>'+(j?'katıldın · ⭐ '+(j.p||0):'katılmak için dokun')+'</span></div><button class="nb pri sm" data-qa="cjoin" data-v="'+c.id+'">'+(j?'DEVAM':'KATIL')+'</button></div>';}).join(''):'<p>Henüz açık sınıf yok. Öğretmen yönetim panelinden sınıf eklemeli.</p>')+
+    '<div class="stat" id="adStat"></div><div class="bts"><button class="nb" data-act="close">KAPAT</button></div>');
+}
+async function clsJoin(id){
+  const c=(SITE.classes||[]).find(x=>x.id===id); if(!c) return;
+  const nm=(($('clName')&&$('clName').value.trim())||'').toLocaleUpperCase('tr').slice(0,14);
+  if(!nm&&!PROF.n) return adStat('Önce adını yaz.','bad');
+  adStat('Bağlanıyor…');
+  for(let i=0;i<25&&cloud==='wait';i++) await new Promise(r=>setTimeout(r,200));
+  if(cloud!=='on') return adStat('Sınıfa katılmak için internet ve Firebase bağlantısı gerekli.','bad');
+  if(!UID&&!(await googleLogin())) return adStat('Google ile giriş yapmalısın.','bad');
+  for(let i=0;i<30&&!canWrite;i++) await new Promise(r=>setTimeout(r,100));
+  const w=await upd(p=>{ if(nm) p.n=nm; p.cls=p.cls||{}; if(!p.cls[id]) p.cls[id]={p:0,ok:0,s:{}}; p['cp_'+id]=p.cls[id].p||0; });
+  if(w!=='cloud') return adStat('Buluta kaydedilemedi, tekrar dene (Firestore kuralları?).','bad');
+  CLS={id,name:c.name}; lsSet(CLK,CLS); curBoard=id; siteBadge();
+  $('infoOv').classList.add('hide'); newGame('class',PROF.n||nm);
+}
+function clsTimerStop(){ if(bdTm){ clearInterval(bdTm); bdTm=null; } }
+async function clsFill(id){
+  if(!$('bdBody')) return;
+  if(!DBH){ $('bdBody').innerHTML='<p>Sıralama için internet bağlantısı gerekli.</p>'; return; }
+  try{
+    const sn=await DBH.collection('players').orderBy('cp_'+id,'desc').limit(30).get();
+    if(viewMode!=='lb'||curBoard!==id||!$('bdBody')) return;
+    const rows=sn.docs.map(d=>Object.assign({id:d.id},d.data()));
+    $('bdBody').innerHTML=rows.length?'<div class="lb">'+rows.map((x,i)=>'<div class="lbrow'+(x.id===UID?' me':'')+'"><span class="lbn">'+(i<3?['🥇','🥈','🥉'][i]:(i+1)+'.')+avatar(x.eq,30)+esc(x.n||'MİSAFİR')+'</span><b>⭐ '+(x['cp_'+id]||0)+' <small style="color:#8fa0b4">· '+((x.cls&&x.cls[id]&&x.cls[id].ok)||0)+' soru</small></b></div>').join('')+'</div><div class="hint">'+rows.length+' öğrenci · 20 sn\'de bir yenilenir</div>':'<p>Henüz kimse katılmadı. İlk sen ol!</p>';
+  }catch(e){ if($('bdBody')) $('bdBody').innerHTML='<p>Sıralama okunamadı (Firestore kuralları ya da bağlantı).</p>'; }
+}
+function clsBoard(id){ clsFill(id); clsTimerStop(); bdTm=setInterval(()=>{ if(viewMode!=='lb'||curBoard!==id||$('infoOv').classList.contains('hide')) return clsTimerStop(); clsFill(id); },20000); }
+function classesAdminHTML(){
+  const L=SITE.classes||[], cs={on:'☁ Bulut açık: sınıflar öğrencilere görünür.',deny:'⚠ Buluta yazılamadı (Firestore kuralları): sınıflar yalnızca bu cihazda.',login:'⚠ Sınıfların herkese görünmesi için yönetici hesabıyla Google girişi gerekir.',off:'💾 Bulut yok: sınıflar yalnızca bu cihazda.'}[siteCloud]||'';
+  return '<div style="display:flex;gap:8px"><input id="ncN" class="fld" maxlength="24" placeholder="Yeni sınıf adı (örn. 8-A)"><button class="nb pri sm" data-qa="cnew">SINIF EKLE</button></div><div class="stat" id="adStat">'+cs+'</div>'+
+    ((siteCloud==='login'||siteCloud==='deny')?'<div class="bts"><button class="nb sm" data-g="in">G · GOOGLE İLE GİRİŞ</button></div>':'')+
+    (L.length?L.slice().reverse().map(c=>'<div class="qcard"><div><b>'+esc(c.name)+'</b><span>öğrenciler “Sınıf Yarışı”ndan katılır</span></div><div class="acts"><button class="nb sm" data-qa="qboard" data-v="'+c.id+'">SIRALAMA</button><button class="nb sm danger" data-qa="cdel" data-v="'+c.id+'">SİL</button></div></div>').join(''):'<p>Henüz sınıf yok.</p>')+
+    '<div class="hint">Puanlama: soru zorluğuna göre 5 · 10 · 15 · 20 · 25 · 30 · 40 coin (kolaydan zora) + hız bonusu. Aynı soru bir hesapta sınıf için yalnızca bir kez puanlanır; çözülen soru sayısı sınırsızdır.</div>';
+}
+async function clsNew(){
+  const n=$('ncN').value.trim(); if(!n) return adStat('Sınıf adı yaz.','bad');
+  SITE.classes=SITE.classes||[]; SITE.classes.push({id:uid8(),name:n.slice(0,24),ts:Date.now()});
+  const ok=await siteSave(); adRender();
+  adStat(ok?'✓ Sınıf eklendi, öğrencilere görünür.':'⚠ Sınıf yalnızca bu cihazda: ⚙ AYARLAR sekmesinden Google ile giriş yap.',ok?'ok':'bad');
+}
+async function clsDel(id){
+  if(!confirm('Sınıf silinsin mi? (öğrenci puanları veritabanında kalır)')) return;
+  SITE.classes=(SITE.classes||[]).filter(c=>c.id!==id); if(CLS&&CLS.id===id){ CLS=null; lsSet(CLK,null); }
+  await siteSave(); adRender();
+}
 const mmss=t=>{t=Math.max(0,Math.ceil(t));return Math.floor(t/60)+':'+String(t%60).padStart(2,'0');};
 const quizOpen=q=>!q.exp||Date.now()<q.exp;
 const openQuizzes=()=>SITE.quizzes.filter(quizOpen);
 const leftTxt=ms=>{const m=Math.round((ms-Date.now())/60000); return m<60?m+' dk kaldı':m<1440?Math.round(m/60)+' sa kaldı':Math.round(m/1440)+' gün kaldı';};
 let catTab='all';
 function renderCatalog(){
-  const g=document.querySelector('#catList .gc[data-kind=game]'); if(g) g.classList.toggle('hide',catTab==='quiz');
+  document.querySelectorAll('#catList .gc[data-kind=game]').forEach(g=>g.classList.toggle('hide',catTab==='quiz'));
   const L=openQuizzes().slice().reverse(), el=$('qCards'); if(!el) return;
   if(catTab==='game'){ el.innerHTML=''; return; }
   el.innerHTML=L.length?L.map(q=>'<div class="gc"><div class="gi">🧠</div><div class="gt"><b>'+esc(q.title)+'</b><span>'+q.qs.length+' soru · '+Math.max(1,Math.round(q.dur/60))+' dk'+(q.exp?' · '+leftTxt(q.exp):'')+'</span></div><div class="ga"><button class="nb pri sm" data-mq="'+q.id+'">▶ ÇÖZ</button></div></div>').join(''):(catTab==='quiz'?'<p class="small">Şu an açık quiz yok.</p>':'');
 }
-function siteBadge(){ renderCatalog(); }
+function siteBadge(){ renderCatalog(); const e=$('clsSub'); if(e){ const L=SITE.classes||[]; e.textContent=CLS&&L.some(c=>c.id===CLS.id)?'Seçili sınıf: '+CLS.name:(L.length?L.length+' sınıf açık · katıl, sınırsız çöz':'Öğretmen sınıf açınca burada görünür'); } }
 async function siteSave(){
   SITE.ts=Date.now(); lsSet(SK,SITE); siteBadge();
   if(typeof DBH!=='undefined'&&DBH&&UID){ try{ await DBH.collection('site').doc('config').set(JSON.parse(JSON.stringify(SITE))); siteCloud='on'; return true; }catch(e){ siteCloud='deny'; } }
@@ -1772,7 +1847,7 @@ async function siteSave(){
 function siteCloudInit(){
   try{ DBH.collection('site').doc('config').onSnapshot(sn=>{
     if(!sn.exists) return; const d=sn.data(); if(!d||(d.ts||0)<SITE.ts) return;
-    SITE=Object.assign({boards:[],quizzes:[],ts:0},d); lsSet(SK,SITE); siteBadge(); if(siteCloud==='off') siteCloud='on';
+    SITE=Object.assign({boards:[],quizzes:[],classes:[],ts:0},d); lsSet(SK,SITE); siteBadge(); if(siteCloud==='off') siteCloud='on';
     if(viewMode==='lb') showBoard(backTo); else if(viewMode==='qlist') showQuizList();
   },()=>{}); }catch(e){}
 }
@@ -1844,7 +1919,7 @@ function showAdmin(){
 function adLogin(){ const v=($('adPw').value||'').trim(); if(v===ADMIN_PW){ admin=true; adRender(); } else { $('adErr').textContent='Şifre yanlış.'; $('adPw').value=''; } }
 const aiOn=()=>!!lsGet(AIK,'');
 function adRender(){
-  const T=[['new','⚡ QUİZ OLUŞTUR'],['quizzes','📚 QUİZLER'],['boards','🏆 TABLOLAR'],['set','⚙ AYARLAR']];
+  const T=[['new','⚡ QUİZ OLUŞTUR'],['quizzes','📚 QUİZLER'],['boards','🏆 TABLOLAR'],['classes','🏫 SINIFLAR'],['set','⚙ AYARLAR']];
   let h='<h2>🔐 YÖNETİM</h2><div class="tabs">'+T.map(t=>'<button class="tab'+(adTab===t[0]?' on':'')+'" data-qa="tab" data-v="'+t[0]+'">'+t[1]+'</button>').join('')+'</div>';
   if(adTab==='new'){
     h+='<label class="lab">Quiz adı</label><input id="nqT" class="fld" maxlength="40" placeholder="Örn. Fiilimsiler Tekrarı">'+
@@ -1859,6 +1934,8 @@ function adRender(){
   }else if(adTab==='quizzes'){
     h+=SITE.quizzes.length?SITE.quizzes.slice().reverse().map(q=>{const o=quizOpen(q); return '<div class="qcard"><div><b>'+esc(q.title)+'</b><span>'+q.qs.length+' soru · '+Math.round(q.dur/60)+' dk · '+(o?(q.exp?leftTxt(q.exp):'açık'):'kapalı')+' · '+esc((SITE.boards.find(b=>b.id===q.board)||{name:'tablo yok'}).name)+'</span></div>'+
       '<div class="acts"><button class="nb sm" data-qa="qtoggle" data-v="'+q.id+'">'+(o?'KAPAT':'AÇ')+'</button><button class="nb sm danger" data-qa="qdel" data-v="'+q.id+'">SİL</button></div></div>';}).join(''):'<p>Henüz quiz yok.</p>';
+  }else if(adTab==='classes'){
+    h+=classesAdminHTML();
   }else if(adTab==='boards'){
     h+='<div style="display:flex;gap:8px"><input id="nbN" class="fld" maxlength="24" placeholder="Yeni tablo adı"><button class="nb pri sm" data-qa="bnew">EKLE</button></div>'+
       (SITE.boards.length?SITE.boards.map(b=>'<div class="qcard"><div><b>'+esc(b.name)+'</b><span>'+SITE.quizzes.filter(q=>q.board===b.id).length+' quiz bağlı</span></div><div class="acts"><button class="nb sm" data-qa="qboard" data-v="'+b.id+'">GÖR</button><button class="nb sm" data-qa="breset" data-v="'+b.id+'">SIFIRLA</button><button class="nb sm danger" data-qa="bdel" data-v="'+b.id+'">SİL</button></div></div>').join(''):'<p>Henüz tablo yok.</p>');
@@ -1973,6 +2050,9 @@ async function adGen(){
   adBusy=false; const b=$('genBtn'); if(b) b.disabled=false;
 }
 async function qa(a,v){
+  if(a==='cnew') return clsNew();
+  if(a==='cdel') return clsDel(v);
+  if(a==='cjoin') return clsJoin(v);
   if(a==='start') return qzIntro(v);
   if(a==='go') return qzStart(v);
   if(a==='qlist') return showQuizList();
@@ -2000,6 +2080,7 @@ $('catTabs').addEventListener('click',e=>{const b=e.target.closest('[data-cat]')
 $('qCards').addEventListener('click',e=>{const b=e.target.closest('[data-mq]'); if(!b) return; Snd.init(); Snd.click(); qzIntro(b.dataset.mq); });
 window.__eclip($('mword'));
 $('menuAd').addEventListener('click',()=>{Snd.init();Snd.click();showAdmin();});
+$('startClass').addEventListener('click',()=>{Snd.init();Snd.click();showClassPicker();});
 $('mlogo').src=window.__LOGO||'';
 siteBadge();
 
